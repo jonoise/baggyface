@@ -13,8 +13,8 @@ import { BrandsWithHighMarketShare } from './brands-with-high-market-share'
 import { PriceDistribution } from './price-distribution'
 
 export default function MainGraphs({ p }: { p: ProductI[] }) {
-  const brandPriceData = averagePriceByBrand(p)
   const priceDistributionData = priceDistribution(p)
+  const brandPriceData = averagePriceByBrand(p)
   const brandData = lodash
     .chain(p)
     .groupBy('brand')

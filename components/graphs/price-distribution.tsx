@@ -34,8 +34,13 @@ export const PriceDistribution = ({
       </CardHeader>
       <CardContent>
         <ChartContainer
-          config={{}}
-          className='h-[300px] 2xl:h-[400px] w-full flex-1'
+          config={{
+            count: {
+              label: 'Número de productos',
+              color: 'hsl(var(--primary))',
+            },
+          }}
+          className='h-[200px] 2xl:h-[400px] flex-1 -ml-5'
         >
           <ResponsiveContainer width='100%' height='100%'>
             <BarChart data={priceDistributionData}>

@@ -4,7 +4,6 @@ export function analyzeBrandDistribution(products: any[]) {
   // Count products for each brand
   const brandCounts = _.countBy(products, 'brand')
 
-  console.log(brandCounts)
   // Calculate total number of products
   const totalProducts = products.length
 
@@ -110,6 +109,8 @@ export const priceDistribution = (products: ProductI[]) => {
     5000,
     6000,
     7000,
+    8000,
+    9000,
     10000,
     15000,
     Infinity,

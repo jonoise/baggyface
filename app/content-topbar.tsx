@@ -15,7 +15,7 @@ export const ContentTopbar = () => {
         <div className='hidden lg:block xl:hidden'>
           <RecipesNavbarSheet />
         </div>
-        <p className='text-sm lg:hidden'>Canasta Básica CR</p>
+        <p className='text-sm lg:hidden font-boska'>baggyface</p>
       </div>
       <Breadcrumb />
       <div className='flex items-center space-x-2'>

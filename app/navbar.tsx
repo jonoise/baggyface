@@ -1,22 +1,9 @@
 'use client'
 
 import React from 'react'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import {
-  DotsVerticalIcon,
-  InstagramLogoIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons'
 
-import {
-  HomeIcon,
-  FileText,
-  Users,
-  Megaphone,
-  Star,
-  StoreIcon,
-} from 'lucide-react'
+import { FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -24,10 +11,11 @@ export const Navbar = () => {
   const pathname = usePathname()
   return (
     <aside className='lg:w-60 z-50 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
-      <div className='flex items-center justify-between mb-2 px-4'>
-        <h1 className='font-black text-sm'>Canasta Básica CR</h1>
+      <div className='flex items-center justify-center mb-2 space-x-2 px-2'>
+        <img src={`/favicon.ico`} className='h-8 w-8 rounded-full' alt='logo' />
+        <h1 className='font-black text-4xl font-boska'>baggyface</h1>
       </div>
-      <nav className='space-y-0.5 px-4'>
+      <nav className='space-y-0.5 px-4 mt-4'>
         {[
           {
             icon: <HomeIcon size={16} strokeWidth={1.5} />,
@@ -35,9 +23,14 @@ export const Navbar = () => {
             href: '/',
           },
           {
-            icon: <HomeIcon size={16} strokeWidth={1.5} />,
+            icon: <SearchIcon size={16} strokeWidth={1.5} />,
             label: 'Buscar',
             href: '/buscar',
+          },
+          {
+            icon: <FileTextIcon size={16} strokeWidth={1.5} />,
+            label: 'Mis Listas',
+            href: '/listas',
           },
         ].map((item, index) => (
           <Link
