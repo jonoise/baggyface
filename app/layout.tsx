@@ -21,21 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={inter.className + ' bg-background'}>
         <AppProviders>
           <div className='flex h-screen relative overflow-hidden'>
             <div className='hidden lg:block'>
               <Navbar />
             </div>
 
-            <div className='hidden xl:block'>
-              <RecipesNavbar />
-            </div>
-
             <main className='relative flex-1 h-full overflow-y-auto'>
               <ContentTopbar />
               {children}
             </main>
+            {/* <div className='hidden xl:block'>
+              <RecipesNavbar />
+            </div> */}
           </div>
         </AppProviders>
       </body>

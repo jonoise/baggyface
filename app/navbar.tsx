@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -16,48 +18,26 @@ import {
   StoreIcon,
 } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export const Navbar = () => {
+  const pathname = usePathname()
   return (
-    <aside className='lg:w-60 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
+    <aside className='lg:w-60 z-50 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
       <div className='flex items-center justify-between mb-2 px-4'>
-        <h1 className='text-2xl font-black font-boska'>salvia virgen</h1>
-        <Button variant={'ghost'} size={'icon'}>
-          <DotsVerticalIcon />
-        </Button>
+        <h1 className='font-black text-sm'>Canasta Básica CR</h1>
       </div>
       <nav className='space-y-0.5 px-4'>
         {[
           {
             icon: <HomeIcon size={16} strokeWidth={1.5} />,
             label: 'Inicio',
-            selected: true,
             href: '/',
           },
           {
-            icon: <FileText size={16} strokeWidth={1.5} />,
-            label: 'Recetas',
-            href: '/recetas',
-          },
-          {
-            icon: <StoreIcon size={16} strokeWidth={1.5} />,
-            label: 'Tienda',
-            href: '/tienda',
-          },
-          {
-            icon: <Users size={16} strokeWidth={1.5} />,
-            label: 'Sobre Nosotros',
-            href: '/sobre-nosotros',
-          },
-          {
-            icon: <Megaphone size={16} strokeWidth={1.5} />,
-            label: 'Comunidad',
-            href: '/comunidad',
-          },
-          {
-            icon: <Star size={16} strokeWidth={1.5} />,
-            label: 'Publicidad',
-            href: '/publicidad',
+            icon: <HomeIcon size={16} strokeWidth={1.5} />,
+            label: 'Buscar',
+            href: '/buscar',
           },
         ].map((item, index) => (
           <Link
@@ -66,7 +46,7 @@ export const Navbar = () => {
             className={cn(
               'flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent',
               {
-                'bg-accent': item.selected,
+                'bg-accent': item.href === pathname,
               }
             )}
           >
@@ -92,7 +72,7 @@ export const Navbar = () => {
     )}
   </div>
 </div> */}
-      <div className='mt-8 px-4'>
+      {/* <div className='mt-8 px-4'>
         <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2>
         <div className='space-y-2'>
           {[
@@ -120,7 +100,7 @@ export const Navbar = () => {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </aside>
   )
 }

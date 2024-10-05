@@ -7,7 +7,7 @@ import { SearchRecipes } from './search-recipes'
 
 export const ContentTopbar = () => {
   return (
-    <nav className='w-full flex items-center justify-between bg-stone-200 dark:bg-stone-900 sticky top-0 h-10  bg-opacity-20 backdrop-blur-md px-8'>
+    <nav className='w-full flex items-center justify-between sticky top-0 h-10 backdrop-blur-md px-8 z-50'>
       <div className='flex items-center space-x-2 xl:hidden'>
         <div className='lg:hidden'>
           <NavbarSheet />
@@ -15,7 +15,7 @@ export const ContentTopbar = () => {
         <div className='hidden lg:block xl:hidden'>
           <RecipesNavbarSheet />
         </div>
-        <p className='font-boska font-black lg:hidden'>salvia virgen</p>
+        <p className='text-sm lg:hidden'>Canasta Básica CR</p>
       </div>
       <Breadcrumb />
       <div className='flex items-center space-x-2'>
