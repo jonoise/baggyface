@@ -28,6 +28,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useProducts } from '../shared/products-provider'
+import { averagePriceByBrand } from '@/lib/graphs/brand-analysis'
 
 interface BrandPrice {
   brand: string
@@ -50,11 +52,9 @@ const alphabetRanges = [
   'Y - Z',
 ]
 
-export default function AveragePriceByBrand({
-  brandPriceData,
-}: {
-  brandPriceData: BrandPrice[]
-}) {
+export default function AveragePriceByBrand() {
+  const { products } = useProducts()
+  const brandPriceData = averagePriceByBrand(products)
   const [selectedRange, setSelectedRange] = useState<string>('A - B')
 
   const filteredData = useMemo(() => {

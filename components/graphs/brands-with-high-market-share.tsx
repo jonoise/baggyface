@@ -7,20 +7,31 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
+import { useProducts } from '../shared/products-provider'
 
 export const description = 'A horizontal bar chart'
 
-export function BrandsWithHighMarketShare({ brandData }: { brandData: any[] }) {
-  const top5BrandData = _.take(brandData, 5)
+export function BrandsWithHighMarketShare() {
+  const { products } = useProducts()
+  const brandData = _.chain(products)
+    .groupBy('brand')
+    .map((value, key) => ({ brand: key, count: value.length }))
+    .orderBy(['count'], ['desc'])
+    .value()
+
+  const top10 = _.take(brandData, 10)
+  const top5BrandData = top10.slice(0, 5)
+  const top10BrandData = top10.slice(5)
+
   return (
     <Card className='w-full'>
       <CardHeader>
@@ -66,6 +77,17 @@ export function BrandsWithHighMarketShare({ brandData }: { brandData: any[] }) {
           </BarChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter>
+        <p className='text-muted-foreground'>
+          Otras marcas que no aparecen en la lista:{' '}
+          {top10BrandData.map((item, i) => (
+            <span key={item.brand}>
+              {item.brand}
+              {i < top10BrandData.length - 1 && i < 5 && ', '}
+            </span>
+          ))}
+        </p>
+      </CardFooter>
     </Card>
   )
 }

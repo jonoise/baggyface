@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema(
     price: { type: Number },
     category: { type: String },
     images: [{ type: mongoose.Schema.Types.Mixed }],
+    properties: [{ type: mongoose.Schema.Types.Mixed }],
   },
   {
     timestamps: true,
