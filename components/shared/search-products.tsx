@@ -13,6 +13,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useProducts } from './products-provider'
 import { ALL_CATEGORIES } from '@/lib/globals'
+import { useDebounce } from 'use-debounce'
 
 interface ProductI {
   _id: string
@@ -50,11 +51,14 @@ interface SearchProductsProps {
 
 export default function SearchProducts() {
   const { products } = useProducts()
+
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 20
+
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 500)
 
   const priceRanges = [
     '1-1000',
@@ -98,7 +102,13 @@ export default function SearchProducts() {
     }
 
     return result
-  }, [searchTerm, selectedCategory, selectedPriceRange, products, fuse])
+  }, [
+    debouncedSearchTerm,
+    selectedCategory,
+    selectedPriceRange,
+    products,
+    fuse,
+  ])
 
   const paginatedProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
@@ -128,7 +138,7 @@ export default function SearchProducts() {
               }
             >
               <SelectTrigger className='w-[180px]'>
-                <SelectValue placeholder='Select category' />
+                <SelectValue placeholder='Todas las categorías' />
               </SelectTrigger>
               <SelectContent className='max-h-52'>
                 <SelectItem value='all'>Todas las categorías</SelectItem>
