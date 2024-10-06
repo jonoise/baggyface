@@ -6,9 +6,29 @@ import { cn } from '@/lib/utils'
 import { FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { SheetTrigger } from '@/components/ui/sheet'
+import { useMediaQuery } from '@/lib/hooks/use-media-query'
 
-export const Navbar = () => {
+export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname()
+  const links = [
+    {
+      icon: <HomeIcon size={16} strokeWidth={1.5} />,
+      label: 'Inicio',
+      href: '/',
+    },
+    {
+      icon: <SearchIcon size={16} strokeWidth={1.5} />,
+      label: 'Buscar',
+      href: '/buscar',
+    },
+    {
+      icon: <FileTextIcon size={16} strokeWidth={1.5} />,
+      label: 'Mis Listas',
+      href: '/listas',
+    },
+  ]
+
   return (
     <aside className='lg:w-60 z-50 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
       <div className='flex items-center justify-center mb-2 space-x-2 px-2'>
@@ -16,26 +36,11 @@ export const Navbar = () => {
         <h1 className='font-black text-4xl font-boska'>baggyface</h1>
       </div>
       <nav className='space-y-0.5 px-4 mt-4'>
-        {[
-          {
-            icon: <HomeIcon size={16} strokeWidth={1.5} />,
-            label: 'Inicio',
-            href: '/',
-          },
-          {
-            icon: <SearchIcon size={16} strokeWidth={1.5} />,
-            label: 'Buscar',
-            href: '/buscar',
-          },
-          {
-            icon: <FileTextIcon size={16} strokeWidth={1.5} />,
-            label: 'Mis Listas',
-            href: '/listas',
-          },
-        ].map((item, index) => (
+        {links.map((item, index) => (
           <Link
             key={index}
             href={item.href}
+            onClick={onLinkClick}
             className={cn(
               'flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent',
               {
@@ -43,8 +48,10 @@ export const Navbar = () => {
               }
             )}
           >
-            {item.icon}
-            <span>{item.label}</span>
+            <>
+              {item.icon}
+              <span>{item.label}</span>
+            </>
           </Link>
         ))}
       </nav>

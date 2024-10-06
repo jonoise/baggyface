@@ -10,6 +10,7 @@ import { unstable_cache } from 'next/cache'
 import dbConnect from '@/lib/db/connect'
 import { Product, ProductI } from '@/lib/models/product'
 import { ProductsProvider } from '@/components/shared/products-provider'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,6 +54,7 @@ export default async function RootLayout({
             </div>
           </ProductsProvider>
         </AppProviders>
+        <Toaster />
       </body>
     </html>
   )
