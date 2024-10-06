@@ -2,12 +2,12 @@
 import { NewListDialog } from '@/components/dialogs/new-list'
 import { PageContainer } from '@/components/shared/page-container'
 
-import { useProductListStore } from '@/lib/storage'
+import { useListsStore } from '@/lib/storage'
 import Link from 'next/link'
 import React from 'react'
 
 const ListasPage = () => {
-  const { lists } = useProductListStore()
+  const { lists } = useListsStore()
 
   return (
     <PageContainer>

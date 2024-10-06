@@ -7,6 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './lib/**/*.{ts,tsx}',
   ],
   prefix: '',
   theme: {
@@ -23,6 +24,8 @@ const config = {
       },
       colors: {
         border: 'hsl(var(--border))',
+        alert: 'hsl(var(--alert))',
+        'alert-border': 'hsl(var(--alert-border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',

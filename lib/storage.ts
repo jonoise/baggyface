@@ -20,12 +20,13 @@ interface ProductListState {
   updateList: (id: string, updatedList: Partial<ProductListI>) => void
   addProductToList: (listId: string, product: ProductI) => void
   removeProductFromList: (listId: string, productId: string) => void
+  getListById: (id: string) => ProductListI | undefined
 }
 
 // Create the store
-export const useProductListStore = create<ProductListState>()(
+export const useListsStore = create<ProductListState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       lists: [],
 
       addList: (list) =>
@@ -67,6 +68,8 @@ export const useProductListStore = create<ProductListState>()(
               : list
           ),
         })),
+
+      getListById: (id) => get().lists.find((list) => list.id === id),
     }),
     {
       name: 'product-list-storage',

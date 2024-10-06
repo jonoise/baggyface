@@ -10,7 +10,7 @@ export const RecipesNavbar = () => {
     <div className='w-60 2xl:w-80 xl:h-screen xl:border-l xl:border-border border-gray-700 overflow-y-auto'>
       <div className='bg-red-500 flex items-center justify-center h-full relative'>
         <img
-          src={`/days/${1}.png`}
+          src={`/days/${weekdayNumber}.png`}
           className='object-cover w-full h-full'
           alt=''
         />

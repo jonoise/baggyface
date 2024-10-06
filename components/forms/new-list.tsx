@@ -6,14 +6,14 @@ import { TagsInputField } from './input-tags'
 import { Button } from '../ui/button'
 
 import { nanoid } from 'nanoid'
-import { useProductListStore } from '@/lib/storage'
+import { useListsStore } from '@/lib/storage'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 
 export const NewListForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const form = useForm({})
   const router = useRouter()
-  const { addList } = useProductListStore()
+  const { addList } = useListsStore()
   const onsubmit = form.handleSubmit((data: any) => {
     const id = nanoid()
     addList({
