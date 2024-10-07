@@ -14,7 +14,7 @@ export const SearchProductsDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>+ {!isMobile ? 'Buscar productos' : 'Buscar'}</Button>
+        <Button>+ {!isMobile ? 'Agregar productos' : 'Agregar'}</Button>
       </DialogTrigger>
       <DialogContent className='max-w-5xl max-h-[70vh] overflow-y-auto p-0'>
         <SearchProducts

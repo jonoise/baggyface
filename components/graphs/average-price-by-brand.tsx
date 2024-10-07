@@ -30,6 +30,9 @@ import {
 } from '@/components/ui/select'
 import { averagePriceByBrand } from '@/lib/graphs/brand-analysis'
 import { useProducts } from '@/lib/hooks/use-products'
+import { renderPrice } from '@/lib/render-price'
+import { useExchangeRate } from '@/lib/hooks/use-currency-value'
+import { useCurrencyStore } from '@/lib/stores/currency-store'
 
 interface BrandPrice {
   brand: string
@@ -54,6 +57,8 @@ const alphabetRanges = [
 
 export default function AveragePriceByBrand() {
   const { products } = useProducts()
+  const { exchange } = useExchangeRate()
+  const { currency } = useCurrencyStore((s) => s)
   const brandPriceData = averagePriceByBrand(products)
   const [selectedRange, setSelectedRange] = useState<string>('A - B')
 
@@ -109,7 +114,11 @@ export default function AveragePriceByBrand() {
                   </p>
                 )}
                 formatter={(value) =>
-                  `Promedio: ₡${value.toString().split('.')[0].split(',')[0]}`
+                  `Promedio:  ${renderPrice({
+                    price: value as number,
+                    currency,
+                    exchange,
+                  })}`
                 }
                 content={<ChartTooltipContent />}
               />

@@ -35,7 +35,6 @@ import {
   DropdownMenuItem,
   DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -44,8 +43,8 @@ import {
 import { useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
 import { useProducts } from '@/lib/hooks/use-products'
-import { NewListDialog } from '../dialogs/new-list'
 import { useModalStore } from '@/lib/stores/modal-store'
+import { Price } from './price'
 
 interface ProductI {
   _id: string
@@ -316,7 +315,9 @@ export default function SearchProducts({
                 </h3>
                 <p className='text-xs'>
                   Precio:{' '}
-                  <span className='underline'>₡{product.price.toFixed(2)}</span>
+                  <span className='underline'>
+                    <Price price={product.price} />
+                  </span>
                 </p>
               </div>
             )

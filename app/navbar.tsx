@@ -3,10 +3,11 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-import { FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
+import { CogIcon, FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { Separator } from '@/components/ui/separator'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname()
@@ -26,6 +27,11 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       label: 'Mis Listas',
       href: '/listas',
     },
+    {
+      icon: <CogIcon size={16} strokeWidth={1.5} />,
+      label: 'Configuración',
+      href: '/configuracion',
+    },
   ]
 
   return (
@@ -34,7 +40,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
         <img src={`/favicon.ico`} className='h-8 w-8 rounded-full' alt='logo' />
         <h1 className='font-black text-4xl font-boska'>baggyface</h1>
       </div>
-      <nav className='space-y-1 px-4 mt-4'>
+      <nav className='space-y-1 px-4 mt-8'>
         {links.map((item, index) => (
           <Link
             key={index}
@@ -54,8 +60,9 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
           </Link>
         ))}
       </nav>
-      <div className='mt-8 px-4'>
-        <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2>
+      <Separator className='my-8' />
+      <div className='px-4'>
+        {/* <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2> */}
         <div className='space-y-2'>
           {[
             {

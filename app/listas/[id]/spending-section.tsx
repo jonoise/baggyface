@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/chart'
 import { ProductI } from '@/lib/models/product'
 import { ALL_CATEGORIES } from '@/lib/globals'
+import { Price } from '@/components/shared/price'
 
 interface CategoryData {
   category: string
@@ -83,7 +84,7 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
       <Card className='p-5 w-full md:w-1/2 flex flex-col items-center justify-center text-center mt-8 md:mt-0 '>
         <h3>Total de gastos</h3>
         <p className='text-xl mt-2 font-bold underline'>
-          ₡{totalAmount.toFixed(2)}
+          <Price price={totalAmount} skeletonClassName='h-7 w-20' />
         </p>
       </Card>
     </div>

@@ -1,13 +1,19 @@
 'use client'
 import { NewListDialog } from '@/components/dialogs/new-list'
 import { PageContainer } from '@/components/shared/page-container'
+import { Price } from '@/components/shared/price'
+import { useExchangeRate } from '@/lib/hooks/use-currency-value'
+import { renderPrice } from '@/lib/render-price'
 
 import { useListsStore } from '@/lib/storage'
+import { useCurrencyStore } from '@/lib/stores/currency-store'
 import Link from 'next/link'
 import React from 'react'
 
 const ListasPage = () => {
   const { lists } = useListsStore()
+  const { exchange } = useExchangeRate()
+  const { currency } = useCurrencyStore((s) => s)
 
   return (
     <PageContainer>
@@ -24,7 +30,7 @@ const ListasPage = () => {
         </div>
       </div>
       <div className='-mx-4 mt-8 sm:-mx-0'>
-        <table className='min-w-full divide-y divide-y-primary'>
+        <table className='min-w-full divide-y divide-primary'>
           <thead>
             <tr>
               <th
@@ -56,7 +62,7 @@ const ListasPage = () => {
               </th>
             </tr>
           </thead>
-          <tbody className='divide-y divide-y-primary'>
+          <tbody className='divide-y divide-primary'>
             {lists.map((list) => (
               <tr key={list.id}>
                 <td className='whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0'>
@@ -78,16 +84,18 @@ const ListasPage = () => {
                 </td>
                 <td className='whitespace-nowrap px-3 py-4 text-sm'>
                   <Link className='w-full' href={`/listas/${list.id}`}>
-                    ₡
-                    {list.products
-                      .reduce((acc, product) => acc + product.price, 0)
-                      .toFixed(2)}
+                    <Price
+                      price={list.products.reduce(
+                        (acc, product) => acc + product.price,
+                        0
+                      )}
+                    />
                   </Link>
                 </td>
                 <td className='whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0'>
                   <Link
                     href={`/listas/${list.id}`}
-                    className='text-blue-600 hover:text-blue-900'
+                    className='text-blue-500 hover:text-blue-600'
                   >
                     Editar
                   </Link>
