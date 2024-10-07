@@ -28,7 +28,12 @@ const ListDetailsPage = () => {
     }
   }, [id, debouncedPayload])
 
-  if (!list) return <LoadingState />
+  if (!list)
+    return (
+      <PageContainer>
+        <LoadingState />
+      </PageContainer>
+    )
 
   return (
     <PageContainer>

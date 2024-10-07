@@ -50,37 +50,37 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row items-center'>
-      <ChartContainer
-        config={{
-          totalSpent: {
-            label: 'Total Spent',
-            color: 'hsl(var(--chart-1))',
-          },
-        }}
-        className='h-[200px] w-full -ml-5'
-      >
-        <BarChart
-          data={categoryData}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+    <div className='flex flex-col md:flex-row items-center space-x-8'>
+      <div className='w-full'>
+        <p className='text-xs text-muted-foreground'>Gastos por categoría</p>
+        <ChartContainer
+          config={{
+            totalSpent: {
+              label: 'Total gastado',
+              color: 'hsl(var(--primary))',
+            },
+          }}
+          className='h-[200px] w-full'
         >
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='category' />
-          <YAxis />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <Legend />
-          <Bar
-            dataKey='totalSpent'
-            fill='var(--color-totalSpent)'
-            name='Total Spent'
-          />
-        </BarChart>
-      </ChartContainer>
+          <BarChart data={categoryData} margin={{ left: -12, top: 10 }}>
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis dataKey='category' axisLine={false} />
+            <YAxis />
+            <ChartTooltip content={<ChartTooltipContent />} />
+            <Legend />
+            <Bar
+              dataKey='totalSpent'
+              fill='var(--color-totalSpent)'
+              name='Total Spent'
+            />
+          </BarChart>
+        </ChartContainer>
+      </div>
       <Card className='p-5 w-full md:w-1/2  flex flex-col items-center justify-center text-center'>
         <h3>Total de productos</h3>
         <p className='text-xl mt-2 font-bold underline'>{totalProducts}</p>
       </Card>
-      <Card className='p-5 w-full md:w-1/2 flex flex-col items-center justify-center text-center mt-8 md:mt-0 md:ml-8'>
+      <Card className='p-5 w-full md:w-1/2 flex flex-col items-center justify-center text-center mt-8 md:mt-0 '>
         <h3>Total de gastos</h3>
         <p className='text-xl mt-2 font-bold underline'>
           ₡{totalAmount.toFixed(2)}

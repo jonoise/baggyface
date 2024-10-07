@@ -28,7 +28,7 @@ export const PriceDistribution = () => {
   const priceDistributionData = priceDistribution(products)
 
   return (
-    <Card className='max-w-fit flex-1'>
+    <Card className='w-full md:max-w-fit  flex-1'>
       <CardHeader>
         <CardTitle>Distribución por precios</CardTitle>
         <CardDescription>

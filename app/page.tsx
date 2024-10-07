@@ -8,6 +8,7 @@ import { PriceRangeDistribution } from '@/components/graphs/price-range-distribu
 import { NewProductsAnimatedList } from '@/components/shared/new-products-animated-list'
 import { PageContainer } from '@/components/shared/page-container'
 import { useProducts } from '@/lib/hooks/use-products'
+import { LoadingState } from './listas/[id]/loading-state'
 
 export default function Home() {
   const { products } = useProducts()
@@ -26,6 +27,7 @@ export default function Home() {
             </p>
             <NewListDialog />
           </section>
+
           <section className='grid grid-cols-2 md:grid-cols-4 gap-5'>
             {/* <div className='text-white relative flex items-center justify-center h-20 rounded-lg bg-gradient-to-tr from-indigo-800 to-pink-600'>
             <div className='absolute inset-0 flex items-center justify-center'>
@@ -56,18 +58,24 @@ export default function Home() {
           </Link> */}
           </section>
         </div>
-        <div className='space-y-8'>
-          <h3>Resultados basados en {products?.length} productos</h3>
-          <div className='flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8'>
-            <PriceRangeDistribution />
-            <BrandsWithHighMarketShare />
-          </div>
-          <AveragePriceByBrand />
-        </div>
-        <div className='grid grid-cols-2 gap-8 mt-8'>
-          <PriceDistribution />
-          <NewProductsAnimatedList />
-        </div>
+        {!products ? (
+          <LoadingState />
+        ) : (
+          <>
+            <div className='space-y-8'>
+              <h3>Resultados basados en {products?.length} productos</h3>
+              <div className='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
+                <PriceRangeDistribution />
+                <BrandsWithHighMarketShare />
+              </div>
+              <AveragePriceByBrand />
+            </div>
+            <div className='grid md:grid-cols-2 gap-8 mt-8'>
+              <PriceDistribution />
+              <NewProductsAnimatedList />
+            </div>
+          </>
+        )}
       </PageContainer>
     </>
   )
