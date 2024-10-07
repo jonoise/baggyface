@@ -1,3 +1,6 @@
+'use client'
+
+import { useParams } from 'next/navigation'
 import { ProductI } from './models/product'
 
 export interface ProductListI {
@@ -76,3 +79,9 @@ export const useListsStore = create<ProductListState>()(
     }
   )
 )
+
+export function useCurrentList() {
+  const params = useParams()
+  const getListById = useListsStore((state) => state.getListById)
+  return getListById(params.id as string)
+}

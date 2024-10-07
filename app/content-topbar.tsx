@@ -1,9 +1,7 @@
 import Breadcrumb from '@/components/shared/breadcrumbs'
-import { SearchIcon } from 'lucide-react'
 import React from 'react'
-import { NavbarSheet, RecipesNavbarSheet } from './navbar-sheets'
+import { NavbarSheet } from './navbar-sheets'
 import { ToggleTheme } from '@/components/shared/toggle-theme'
-import { SearchRecipes } from './search-recipes'
 
 export const ContentTopbar = () => {
   return (
@@ -13,7 +11,6 @@ export const ContentTopbar = () => {
       </div>
       <Breadcrumb />
       <div className='flex items-center space-x-4'>
-        <SearchRecipes />
         <ToggleTheme />
 
         <NavbarSheet />

@@ -1,5 +1,6 @@
 'use client'
 
+import { NewListDialog } from '@/components/dialogs/new-list'
 import AveragePriceByBrand from '@/components/graphs/average-price-by-brand'
 import { BrandsWithHighMarketShare } from '@/components/graphs/brands-with-high-market-share'
 import MainGraphs from '@/components/graphs/main-graphs'
@@ -24,6 +25,7 @@ export default function Home() {
               y hacer listas de compra. Sirve para budgetear y planificar tus
               compras en el súper.
             </p>
+            <NewListDialog />
           </section>
           <section className='grid grid-cols-2 md:grid-cols-4 gap-5'>
             {/* <div className='text-white relative flex items-center justify-center h-20 rounded-lg bg-gradient-to-tr from-indigo-800 to-pink-600'>

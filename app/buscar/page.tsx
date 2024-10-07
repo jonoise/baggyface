@@ -30,7 +30,7 @@ const BuscarPage = () => {
             supermercado. Tratamos de actualizar los precios de forma periódica.
           </AlertDescription>
         </Alert>
-        <SearchProducts />
+        <SearchProducts withTopMargin />
       </div>
     </PageContainer>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react'
 import Fuse from 'fuse.js'
 import { Input } from '@/components/ui/input'
 import {
@@ -14,6 +14,36 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useProducts } from './products-provider'
 import { ALL_CATEGORIES } from '@/lib/globals'
 import { useDebounce } from 'use-debounce'
+import { cn } from '@/lib/utils'
+import { Button } from '../ui/button'
+import {
+  CandyCane,
+  FilePlus2,
+  FileText,
+  Mail,
+  MessageSquare,
+  Plus,
+  PlusCircle,
+  PlusIcon,
+  UserPlus2,
+  Users,
+} from 'lucide-react'
+import { DotsHorizontalIcon, EyeOpenIcon } from '@radix-ui/react-icons'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
+import { useListsStore } from '@/lib/storage'
+import { toast } from 'sonner'
 
 interface ProductI {
   _id: string
@@ -45,20 +75,37 @@ type ProductPropertyI = {
   value: string
 }
 
-interface SearchProductsProps {
-  products: ProductI[]
-}
-
-export default function SearchProducts() {
+export default function SearchProducts({
+  withTopMargin,
+  addToList,
+}: {
+  withTopMargin?: boolean
+  addToList?: {
+    listId: string
+    onAdd: (product: ProductI) => void
+  }
+}) {
   const { products } = useProducts()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('')
-  const [currentPage, setCurrentPage] = useState(1)
+  const [displayedProducts, setDisplayedProducts] = useState<ProductI[]>([])
+  const [page, setPage] = useState(1)
   const itemsPerPage = 20
 
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500)
+
+  const observer = useRef<IntersectionObserver | null>(null)
+  const lastProductElementRef = useCallback((node: HTMLDivElement | null) => {
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setPage((prevPage) => prevPage + 1)
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [])
 
   const priceRanges = [
     '1-1000',
@@ -86,8 +133,8 @@ export default function SearchProducts() {
   )
 
   const filteredProducts = useMemo(() => {
-    let result = searchTerm
-      ? fuse.search(searchTerm).map((res) => res.item)
+    let result = debouncedSearchTerm
+      ? fuse.search(debouncedSearchTerm).map((res) => res.item)
       : products
 
     if (selectedCategory) {
@@ -110,19 +157,27 @@ export default function SearchProducts() {
     fuse,
   ])
 
-  const paginatedProducts = filteredProducts.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  )
+  useEffect(() => {
+    setDisplayedProducts([])
+    setPage(1)
+  }, [debouncedSearchTerm, selectedCategory, selectedPriceRange])
 
   useEffect(() => {
-    setCurrentPage(1)
-  }, [searchTerm, selectedCategory, selectedPriceRange])
+    const newProducts = filteredProducts.slice(
+      (page - 1) * itemsPerPage,
+      page * itemsPerPage
+    )
+    setDisplayedProducts((prevProducts) => [...prevProducts, ...newProducts])
+  }, [filteredProducts, page])
+
+  const { lists, addProductToList } = useListsStore((state) => state)
 
   return (
     <div className='flex flex-col h-full relative'>
-      <div className='sticky top-0 bg-background z-10 p-4 border-b border-border'>
-        <div className='flex flex-col space-y-4 pt-10'>
+      <div className='sticky top-0 bg-background z-10 p-4 border-b border-border '>
+        <div
+          className={cn('flex flex-col space-y-4 ', withTopMargin && 'pt-10')}
+        >
           <Input
             type='text'
             placeholder='Busca productos por nombre, categoría o código de barras'
@@ -166,22 +221,83 @@ export default function SearchProducts() {
       </div>
       <ScrollArea className='flex-grow'>
         <div className='p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
-          {paginatedProducts.map((product) => {
+          {displayedProducts.map((product, index) => {
             const category = ALL_CATEGORIES.find(
               (c) => c.value === product.category
             )
             return (
               <div
                 key={product._id}
+                ref={
+                  index === displayedProducts.length - 1
+                    ? lastProductElementRef
+                    : null
+                }
                 className='border border-border p-4 rounded-md space-y-2'
               >
-                <div className='flex items-center space-x-2'>
-                  <p className='text-xs'>
-                    {category?.Icon && <category.Icon className='h-4 w-4' />}
-                  </p>
-                  <p className='text-xs text-muted-foreground'>
-                    {category?.label}
-                  </p>
+                <div className='flex items-center justify-between'>
+                  <div className='flex items-center space-x-2'>
+                    <p className='text-xs'>
+                      {category?.Icon && <category.Icon className='h-4 w-4' />}
+                    </p>
+                    <p className='text-xs text-muted-foreground'>
+                      {category?.label}
+                    </p>
+                  </div>
+                  {addToList?.onAdd ? (
+                    <Button
+                      onClick={() => addToList?.onAdd(product)}
+                      size='icon'
+                      className='h-5 w-5'
+                      variant='ghost'
+                    >
+                      <PlusIcon className='h-4 w-4' />
+                      <span className='sr-only'>Agregar a la lista</span>
+                    </Button>
+                  ) : (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button size='icon' className='h-5 w-5' variant='ghost'>
+                          <DotsHorizontalIcon className='h-4 w-4' />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className='w-52'>
+                        <DropdownMenuGroup>
+                          <DropdownMenuItem>
+                            <EyeOpenIcon className='mr-2 h-4 w-4' />
+                            <span>Ver Detalles</span>
+                          </DropdownMenuItem>
+                          <DropdownMenuSub>
+                            <DropdownMenuSubTrigger>
+                              <FilePlus2 className='mr-2 h-4 w-4' />
+                              <span>Agregar a lista</span>
+                            </DropdownMenuSubTrigger>
+                            <DropdownMenuPortal>
+                              <DropdownMenuSubContent>
+                                {lists.map((list) => (
+                                  <DropdownMenuItem
+                                    key={list.id}
+                                    onClick={() => {
+                                      addProductToList(list.id, product)
+                                      toast.success('Producto agregado')
+                                    }}
+                                  >
+                                    <span>{list.title}</span>
+                                  </DropdownMenuItem>
+                                ))}
+
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                  <PlusCircle className='mr-2 h-4 w-4' />
+                                  <span>More...</span>
+                                </DropdownMenuItem>
+                              </DropdownMenuSubContent>
+                            </DropdownMenuPortal>
+                          </DropdownMenuSub>
+                        </DropdownMenuGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  )}
                 </div>
                 <h3 className='text-sm font-semibold truncate '>
                   {product.name}

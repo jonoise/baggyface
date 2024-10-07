@@ -78,10 +78,10 @@ const ListasPage = () => {
                 </td>
                 <td className='whitespace-nowrap px-3 py-4 text-sm'>
                   <Link className='w-full' href={`/listas/${list.id}`}>
-                    {list.products.reduce(
-                      (acc, product) => acc + product.price,
-                      0
-                    )}
+                    ₡
+                    {list.products
+                      .reduce((acc, product) => acc + product.price, 0)
+                      .toFixed(2)}
                   </Link>
                 </td>
                 <td className='whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0'>
