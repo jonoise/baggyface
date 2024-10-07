@@ -19,6 +19,9 @@ export default function RootLayout({
   useProducts()
   return (
     <html lang='en'>
+      <head>
+        <title>Baggyface</title>
+      </head>
       <body className={inter.className + ' bg-background'}>
         <AppProviders>
           <div className='flex h-screen relative overflow-hidden'>

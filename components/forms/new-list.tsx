@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form'
 import { TagsInputField } from './input-tags'
 import { Button } from '../ui/button'
 
-import { nanoid } from 'nanoid'
+import { customAlphabet } from 'nanoid'
 import { useListsStore } from '@/lib/storage'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-
+const nanoid = customAlphabet(
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+)
 export const NewListForm = ({ onSuccess }: { onSuccess?: () => void }) => {
   const form = useForm({})
   const router = useRouter()

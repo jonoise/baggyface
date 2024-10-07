@@ -14,10 +14,6 @@ export const RecipesNavbar = () => {
           className='object-cover w-full h-full'
           alt=''
         />
-
-        {/* <Link href='/recetas/categorias' className='text-xs'>
-          Ver Categorías
-        </Link> */}
       </div>
       <div className='space-y-4'></div>
     </div>
