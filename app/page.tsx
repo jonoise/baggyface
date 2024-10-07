@@ -3,7 +3,6 @@
 import { NewListDialog } from '@/components/dialogs/new-list'
 import AveragePriceByBrand from '@/components/graphs/average-price-by-brand'
 import { BrandsWithHighMarketShare } from '@/components/graphs/brands-with-high-market-share'
-import MainGraphs from '@/components/graphs/main-graphs'
 import { PriceDistribution } from '@/components/graphs/price-distribution'
 import { PriceRangeDistribution } from '@/components/graphs/price-range-distribution'
 import { NewProductsAnimatedList } from '@/components/shared/new-products-animated-list'
