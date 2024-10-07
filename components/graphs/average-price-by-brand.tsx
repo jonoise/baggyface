@@ -28,8 +28,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useProducts } from '../shared/products-provider'
 import { averagePriceByBrand } from '@/lib/graphs/brand-analysis'
+import { useProducts } from '@/lib/hooks/use-products'
 
 interface BrandPrice {
   brand: string

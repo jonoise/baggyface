@@ -87,9 +87,9 @@ export const groupByCategory = (products: ProductI[]) => {
   }))
 }
 
-export const averagePriceByBrand = (products: ProductI[]) => {
+export const averagePriceByBrand = (products: ProductI[] | undefined) => {
   const brandPrices: Record<string, number[]> = {}
-  products.forEach((product) => {
+  products?.forEach((product) => {
     if (!brandPrices[product.brand]) brandPrices[product.brand] = []
     brandPrices[product.brand].push(product.price)
   })

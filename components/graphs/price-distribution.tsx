@@ -19,11 +19,12 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
-import { useProducts } from '../shared/products-provider'
+import { useProducts } from '@/lib/hooks/use-products'
 import { priceDistribution } from '@/lib/graphs/brand-analysis'
 
 export const PriceDistribution = () => {
   const { products } = useProducts()
+  if (!products) return null
   const priceDistributionData = priceDistribution(products)
 
   return (

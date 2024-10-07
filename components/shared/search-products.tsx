@@ -11,7 +11,6 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useProducts } from './products-provider'
 import { ALL_CATEGORIES } from '@/lib/globals'
 import { useDebounce } from 'use-debounce'
 import { cn } from '@/lib/utils'
@@ -44,6 +43,7 @@ import {
 } from '../ui/dropdown-menu'
 import { useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
+import { useProducts } from '@/lib/hooks/use-products'
 
 interface ProductI {
   _id: string
@@ -123,27 +123,28 @@ export default function SearchProducts({
     '90001-100000',
   ]
 
-  const fuse = useMemo(
-    () =>
-      new Fuse(products, {
-        keys: ['name', 'brand', 'ean'],
-        threshold: 0.3,
-      }),
-    [products]
-  )
+  const fuse = useMemo(() => {
+    if (!products) return
+    return new Fuse(products, {
+      keys: ['name', 'brand', 'ean'],
+      threshold: 0.3,
+    })
+  }, [products])
 
   const filteredProducts = useMemo(() => {
     let result = debouncedSearchTerm
-      ? fuse.search(debouncedSearchTerm).map((res) => res.item)
+      ? fuse?.search(debouncedSearchTerm).map((res) => res.item)
       : products
 
     if (selectedCategory) {
-      result = result.filter((product) => product.category === selectedCategory)
+      result = result?.filter(
+        (product) => product.category === selectedCategory
+      )
     }
 
     if (selectedPriceRange) {
       const [min, max] = selectedPriceRange.split('-').map(Number)
-      result = result.filter(
+      result = result?.filter(
         (product) => product.price >= min && (max ? product.price <= max : true)
       )
     }
@@ -163,11 +164,13 @@ export default function SearchProducts({
   }, [debouncedSearchTerm, selectedCategory, selectedPriceRange])
 
   useEffect(() => {
-    const newProducts = filteredProducts.slice(
+    const newProducts = filteredProducts?.slice(
       (page - 1) * itemsPerPage,
       page * itemsPerPage
     )
-    setDisplayedProducts((prevProducts) => [...prevProducts, ...newProducts])
+    if (newProducts) {
+      setDisplayedProducts((prevProducts) => [...prevProducts, ...newProducts])
+    }
   }, [filteredProducts, page])
 
   const { lists, addProductToList } = useListsStore((state) => state)

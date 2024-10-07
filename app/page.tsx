@@ -7,7 +7,7 @@ import { PriceDistribution } from '@/components/graphs/price-distribution'
 import { PriceRangeDistribution } from '@/components/graphs/price-range-distribution'
 import { NewProductsAnimatedList } from '@/components/shared/new-products-animated-list'
 import { PageContainer } from '@/components/shared/page-container'
-import { useProducts } from '@/components/shared/products-provider'
+import { useProducts } from '@/lib/hooks/use-products'
 
 export default function Home() {
   const { products } = useProducts()
@@ -57,7 +57,7 @@ export default function Home() {
           </section>
         </div>
         <div className='space-y-8'>
-          <h3>Resultados basados en {products.length} productos</h3>
+          <h3>Resultados basados en {products?.length} productos</h3>
           <div className='flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8'>
             <PriceRangeDistribution />
             <BrandsWithHighMarketShare />

@@ -15,10 +15,12 @@ import {
   ChartLegendContent,
 } from '@/components/ui/chart'
 import { getPriceRangeDistribution } from '@/lib/graphs/category-analysis'
-import { useProducts } from '../shared/products-provider'
+import { useProducts } from '@/lib/hooks/use-products'
+
 const COLORS = ['#588157', '#dad7cd', '#38a3a5']
 export const PriceRangeDistribution = () => {
   const { products } = useProducts()
+  if (!products) return null
   const data = getPriceRangeDistribution(products)
   return (
     <Card className='flex-1 max-w-sm'>

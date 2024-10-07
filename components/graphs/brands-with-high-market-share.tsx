@@ -16,7 +16,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/components/ui/chart'
-import { useProducts } from '../shared/products-provider'
+import { useProducts } from '@/lib/hooks/use-products'
 
 export const description = 'A horizontal bar chart'
 
