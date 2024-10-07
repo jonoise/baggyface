@@ -8,6 +8,7 @@ import { ContentTopbar } from './content-topbar'
 import { AppProviders } from '@/components/shared/providers'
 import { Toaster } from 'sonner'
 import { useProducts } from '@/lib/hooks/use-products'
+import { ModalsProvider } from './modals'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,6 +40,7 @@ export default function RootLayout({
           </div>
         </AppProviders>
         <Toaster />
+        <ModalsProvider />
       </body>
     </html>
   )

@@ -26,10 +26,12 @@ export const DeleteProduct = ({ product }: { product: ProductI }) => {
       >
         <TrashIcon className='h-3 w-3' strokeWidth={1} />
       </Button>
-      <DialogView open={open} setOpen={setOpen}>
-        <DialogHeader>
-          <DialogTitle>Eliminar producto</DialogTitle>
-        </DialogHeader>
+      <DialogView
+        drawerClassName='mt-4 space-y-5'
+        open={open}
+        setOpen={setOpen}
+      >
+        <DialogTitle>Eliminar producto</DialogTitle>
         <div>
           <p>Deseas eliminar {product.name} de la lista?</p>
           <div className='mt-4 flex justify-end gap-4'>

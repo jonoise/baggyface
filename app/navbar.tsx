@@ -6,8 +6,7 @@ import { cn } from '@/lib/utils'
 import { FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { SheetTrigger } from '@/components/ui/sheet'
-import { useMediaQuery } from '@/lib/hooks/use-media-query'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname()
@@ -35,14 +34,14 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
         <img src={`/favicon.ico`} className='h-8 w-8 rounded-full' alt='logo' />
         <h1 className='font-black text-4xl font-boska'>baggyface</h1>
       </div>
-      <nav className='space-y-0.5 px-4 mt-4'>
+      <nav className='space-y-1 px-4 mt-4'>
         {links.map((item, index) => (
           <Link
             key={index}
             href={item.href}
             onClick={onLinkClick}
             className={cn(
-              'flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent',
+              'flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md transition ease-in-out duration-300 hover:bg-accent',
               {
                 'bg-accent': item.href === pathname,
               }
@@ -55,33 +54,21 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
           </Link>
         ))}
       </nav>
-      {/* <div className='mt-8'>
-  <h2 className='text-sm font-semibold mb-2'>Tags</h2>
-  <div className='space-y-2'>
-    {['Newsletter', 'Deep Dives', 'Notes', 'News', 'Coll'].map(
-      (tag, index) => (
-        <a
-          key={index}
-          href='#'
-          className='flex text-sm items-center space-x-2 px-2  rounded-md hover:bg-gray-800'
-        >
-          <span className='w-2 h-2 rounded-full bg-blue-400'></span>
-          <span>{tag}</span>
-        </a>
-      )
-    )}
-  </div>
-</div> */}
-      {/* <div className='mt-8 px-4'>
+      <div className='mt-8 px-4'>
         <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2>
         <div className='space-y-2'>
           {[
-            { icon: <InstagramLogoIcon />, label: 'Instagram' },
-            { icon: <TwitterLogoIcon />, label: 'Twitter' },
+            {
+              icon: <GitHubLogoIcon />,
+              label: 'Github',
+              href: 'https://github.com/jonoise/baggyface',
+            },
+            // { icon: <TwitterLogoIcon />, label: 'Twitter' },
           ].map((item, index) => (
             <a
               key={index}
-              href='#'
+              href={item.href}
+              target='_blank'
               className='flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md hover:bg-accent'
             >
               <div className='flex items-center space-x-2'>
@@ -100,7 +87,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
             </a>
           ))}
         </div>
-      </div> */}
+      </div>
     </aside>
   )
 }

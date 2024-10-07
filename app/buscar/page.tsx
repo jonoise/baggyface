@@ -1,11 +1,11 @@
 'use client'
 
-import { NewListDialog } from '@/components/dialogs/new-list'
 import { PageContainer } from '@/components/shared/page-container'
 import SearchProducts from '@/components/shared/search-products'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Terminal } from 'lucide-react'
+
 import React from 'react'
+import { RiExchangeDollarFill } from '@remixicon/react'
 
 const BuscarPage = () => {
   return (
@@ -23,7 +23,7 @@ const BuscarPage = () => {
           </div>
         </div>
         <Alert className='max-w-3xl mt-10'>
-          <Terminal className='h-4 w-4' />
+          <RiExchangeDollarFill className='h-4 w-4' />
           <AlertTitle>Los precios pueden variar</AlertTitle>
           <AlertDescription>
             Es posible que los precios no reflejen el precio actual en el

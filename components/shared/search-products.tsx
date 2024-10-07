@@ -44,6 +44,8 @@ import {
 import { useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
 import { useProducts } from '@/lib/hooks/use-products'
+import { NewListDialog } from '../dialogs/new-list'
+import { useModalStore } from '@/lib/stores/modal-store'
 
 interface ProductI {
   _id: string
@@ -86,6 +88,7 @@ export default function SearchProducts({
   }
 }) {
   const { products } = useProducts()
+  const { newList } = useModalStore((s) => s)
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
@@ -177,7 +180,7 @@ export default function SearchProducts({
 
   return (
     <div className='flex flex-col h-full relative'>
-      <div className='sticky top-0 bg-background z-10 p-4 border-b border-border '>
+      <div className='sticky top-0 bg-background z-10 pb-4 border-b border-border '>
         <div
           className={cn('flex flex-col space-y-4 ', withTopMargin && 'pt-10')}
         >
@@ -195,7 +198,7 @@ export default function SearchProducts({
                   : setSelectedCategory(value)
               }
             >
-              <SelectTrigger className='w-[180px]'>
+              <SelectTrigger className='md:w-[180px] w-[50%]'>
                 <SelectValue placeholder='Todas las categorías' />
               </SelectTrigger>
               <SelectContent className='max-h-52'>
@@ -208,10 +211,10 @@ export default function SearchProducts({
               </SelectContent>
             </Select>
             <Select onValueChange={(value) => setSelectedPriceRange(value)}>
-              <SelectTrigger className='w-[180px]'>
+              <SelectTrigger className='md:w-[180px] w-[50%]'>
                 <SelectValue placeholder='Rango de precios' />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className='max-h-52'>
                 {priceRanges.map((range) => (
                   <SelectItem key={range} value={range}>
                     ₡{range}
@@ -223,7 +226,7 @@ export default function SearchProducts({
         </div>
       </div>
       <ScrollArea className='flex-grow'>
-        <div className='p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
+        <div className='py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
           {displayedProducts.map((product, index) => {
             const category = ALL_CATEGORIES.find(
               (c) => c.value === product.category
@@ -258,18 +261,22 @@ export default function SearchProducts({
                       <span className='sr-only'>Agregar a la lista</span>
                     </Button>
                   ) : (
-                    <DropdownMenu>
+                    <DropdownMenu modal={false}>
                       <DropdownMenuTrigger asChild>
-                        <Button size='icon' className='h-5 w-5' variant='ghost'>
-                          <DotsHorizontalIcon className='h-4 w-4' />
+                        <Button
+                          size='icon'
+                          className='h-6 w-6 rounded-md'
+                          variant='secondary'
+                        >
+                          <DotsHorizontalIcon className='h-4 w-4 ' />
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className='w-52'>
                         <DropdownMenuGroup>
-                          <DropdownMenuItem>
+                          {/* <DropdownMenuItem>
                             <EyeOpenIcon className='mr-2 h-4 w-4' />
                             <span>Ver Detalles</span>
-                          </DropdownMenuItem>
+                          </DropdownMenuItem> */}
                           <DropdownMenuSub>
                             <DropdownMenuSubTrigger>
                               <FilePlus2 className='mr-2 h-4 w-4' />
@@ -290,9 +297,11 @@ export default function SearchProducts({
                                 ))}
 
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => newList.setOpen(true)}
+                                >
                                   <PlusCircle className='mr-2 h-4 w-4' />
-                                  <span>More...</span>
+                                  <span>Nueva Lista</span>
                                 </DropdownMenuItem>
                               </DropdownMenuSubContent>
                             </DropdownMenuPortal>

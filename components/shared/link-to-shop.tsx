@@ -11,7 +11,7 @@ export const LinkToStartShopping = ({
 }) => {
   return (
     <Link className='block' href={`/listas/${listId}/comprar`}>
-      <Button className={className}>Ver Detalles</Button>
+      <Button className={className}>Empezar a comprar</Button>
     </Link>
   )
 }
