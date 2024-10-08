@@ -5,7 +5,7 @@ import SearchProducts from '@/components/shared/search-products'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 import React from 'react'
-import { RiExchangeDollarFill, RiExchangeFill } from '@remixicon/react'
+import { RiExchangeFill } from '@remixicon/react'
 
 const BuscarPage = () => {
   return (

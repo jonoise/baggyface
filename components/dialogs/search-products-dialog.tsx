@@ -16,7 +16,10 @@ export const SearchProductsDialog = () => {
       <DialogTrigger asChild>
         <Button>+ {!isMobile ? 'Agregar productos' : 'Agregar'}</Button>
       </DialogTrigger>
-      <DialogContent className='max-w-5xl max-h-[70vh] overflow-y-auto p-0'>
+      <DialogContent
+        hideClose
+        className='max-w-5xl max-h-[80vh] md:max-h-[70vh] overflow-y-auto p-0'
+      >
         <SearchProducts
           addToList={{
             listId: list?.id!,

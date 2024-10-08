@@ -10,6 +10,7 @@ import { Toaster } from 'sonner'
 import { useProducts } from '@/lib/hooks/use-products'
 import { ModalsProvider } from './modals'
 import { useExchangeRate } from '@/lib/hooks/use-currency-value'
+import { MobileDock } from '@/components/shared/dock'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,15 +33,18 @@ export default function RootLayout({
               <Navbar />
             </div>
 
-            <main className='flex-1 flex flex-col overflow-hidden'>
+            <main className='flex-1 flex h-[90vh] md:h-auto flex-col overflow-hidden'>
               <ContentTopbar />
-              <div className='flex-1 overflow-y-auto'>{children}</div>
+              <div className='flex-1 overflow-y-auto pb-20 md:pb-0'>
+                {children}
+              </div>
             </main>
 
             <div className='hidden xl:block'>
               <RecipesNavbar />
             </div>
           </div>
+          <MobileDock />
         </AppProviders>
         <Toaster />
         <ModalsProvider />

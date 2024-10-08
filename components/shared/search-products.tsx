@@ -15,19 +15,8 @@ import { ALL_CATEGORIES } from '@/lib/globals'
 import { useDebounce } from 'use-debounce'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
-import {
-  CandyCane,
-  FilePlus2,
-  FileText,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  PlusIcon,
-  UserPlus2,
-  Users,
-} from 'lucide-react'
-import { DotsHorizontalIcon, EyeOpenIcon } from '@radix-ui/react-icons'
+import { FilePlus2, PlusCircle, PlusIcon } from 'lucide-react'
+import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,6 +34,7 @@ import { toast } from 'sonner'
 import { useProducts } from '@/lib/hooks/use-products'
 import { useModalStore } from '@/lib/stores/modal-store'
 import { Price } from './price'
+import { RiCloseCircleFill } from '@remixicon/react'
 
 interface ProductI {
   _id: string
@@ -92,6 +82,7 @@ export default function SearchProducts({
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('')
   const [displayedProducts, setDisplayedProducts] = useState<ProductI[]>([])
   const [page, setPage] = useState(1)
+  const searchTermRef = useRef<HTMLInputElement>(null)
   const itemsPerPage = 20
 
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500)
@@ -179,12 +170,31 @@ export default function SearchProducts({
     <div className='flex flex-col h-full relative'>
       <div className='sticky top-0 bg-background z-10 pb-4 border-b border-border '>
         <div className={cn('flex flex-col space-y-4 ')}>
-          <Input
-            type='text'
-            placeholder='Busca productos por nombre, categoría o código de barras'
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className='flex items-center'>
+            <Input
+              ref={searchTermRef}
+              className='w-full'
+              type='text'
+              placeholder='Busca productos por nombre, categoría o código de barras'
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value)
+              }}
+            />
+            {searchTerm && (
+              <Button
+                variant='ghost'
+                size='icon'
+                className='-ml-10 h-7 w-7 rounded-lg'
+                onClick={() => {
+                  setSearchTerm('')
+                  searchTermRef.current?.focus()
+                }}
+              >
+                <RiCloseCircleFill className='h-5 w-5' />
+              </Button>
+            )}
+          </div>
           <div className='flex space-x-4'>
             <Select
               onValueChange={(value) =>

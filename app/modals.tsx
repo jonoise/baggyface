@@ -1,6 +1,7 @@
 'use client'
 
 import { NewListForm } from '@/components/forms/new-list'
+import { DialogTitle } from '@/components/ui/dialog'
 import { DialogView } from '@/components/ui/dialog-view'
 import { useModalStore } from '@/lib/stores/modal-store'
 import React from 'react'
@@ -13,7 +14,10 @@ export const ModalsProvider = () => {
         open={newList.open}
         setOpen={(value) => newList.setOpen(value as boolean)}
       >
-        <NewListForm onSuccess={() => newList.setOpen(false)} />
+        <DialogTitle>Nueva Lista</DialogTitle>
+        <div className='mt-4'>
+          <NewListForm onSuccess={() => newList.setOpen(false)} />
+        </div>
       </DialogView>
     </>
   )

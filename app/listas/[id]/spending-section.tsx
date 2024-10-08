@@ -89,10 +89,10 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
         <Button
           variant={'outline'}
           size={'icon'}
-          className='absolute top-2 right-4'
+          className='absolute top-2 right-4 lg:top-1 lg:right-2 lg:h-8 lg:w-8'
           onClick={() => setCurrency(currency === 'CRC' ? 'USD' : 'CRC')}
         >
-          <RiExchangeDollarFill className='h-5 w-5' />
+          <RiExchangeDollarFill className='h-5 w-5 lg:h-4 lg:w-4' />
         </Button>
         <h3>Total de gastos</h3>
         <p className='text-xl mt-2 font-bold underline'>
