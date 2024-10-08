@@ -6,8 +6,7 @@ import { cn } from '@/lib/utils'
 import { CogIcon, FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
-import { Separator } from '@/components/ui/separator'
+import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname()
@@ -35,7 +34,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   ]
 
   return (
-    <aside className='lg:w-60 z-50 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
+    <aside className='lg:w-60 z-50 sticky top-0 pt-4 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
       <Link
         href={'/'}
         className='flex items-center justify-center mb-2 space-x-2 px-2'
@@ -63,11 +62,15 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
           </Link>
         ))}
       </nav>
-      <Separator className='my-8' />
-      <div className='px-4'>
-        {/* <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2> */}
+      <div className='px-4 mt-8'>
+        <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2>
         <div className='space-y-2'>
           {[
+            {
+              icon: <InstagramLogoIcon />,
+              label: 'Instagram',
+              href: 'https://instagram.com/baggyface.cr',
+            },
             {
               icon: <GitHubLogoIcon />,
               label: 'Github',

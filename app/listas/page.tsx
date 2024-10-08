@@ -2,21 +2,15 @@
 import { NewListDialog } from '@/components/dialogs/new-list'
 import { PageContainer } from '@/components/shared/page-container'
 import { Price } from '@/components/shared/price'
-import { useExchangeRate } from '@/lib/hooks/use-currency-value'
-import { renderPrice } from '@/lib/render-price'
-
 import { useListsStore } from '@/lib/storage'
-import { useCurrencyStore } from '@/lib/stores/currency-store'
 import Link from 'next/link'
 import React from 'react'
 
 const ListasPage = () => {
   const { lists } = useListsStore()
-  const { exchange } = useExchangeRate()
-  const { currency } = useCurrencyStore((s) => s)
 
   return (
-    <PageContainer>
+    <PageContainer className='mt-4'>
       <div className='sm:flex sm:items-center'>
         <div className='sm:flex-auto'>
           <h1 className='text-base font-semibold leading-6'>Mis Listas</h1>

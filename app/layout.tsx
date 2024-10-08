@@ -11,6 +11,7 @@ import { useProducts } from '@/lib/hooks/use-products'
 import { ModalsProvider } from './modals'
 import { useExchangeRate } from '@/lib/hooks/use-currency-value'
 import { MobileDock } from '@/components/shared/dock'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -45,10 +46,15 @@ export default function RootLayout({
             </div>
           </div>
           <MobileDock />
+          <Toaster />
+          <ModalsProvider />
         </AppProviders>
-        <Toaster />
-        <ModalsProvider />
       </body>
+      <Script
+        async
+        src='https://analytics.eu.umami.is/script.js'
+        data-website-id='0fb98140-4a1c-4e3d-af73-e45a3dea2386'
+      />
     </html>
   )
 }

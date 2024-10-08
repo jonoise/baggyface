@@ -9,7 +9,7 @@ import { RiExchangeFill } from '@remixicon/react'
 
 const BuscarPage = () => {
   return (
-    <PageContainer className='space-y-10'>
+    <PageContainer className='space-y-10 mt-4'>
       <div className='sm:flex sm:items-center'>
         <div className='sm:flex-auto'>
           <h1 className='text-base font-semibold leading-6'>

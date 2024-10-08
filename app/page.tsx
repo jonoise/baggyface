@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <PageContainer>
-        <div className='w-full rounded-2xl py-10 space-y-10'>
+        <div className='w-full rounded-2xl py-4 space-y-10'>
           <section className='space-y-4'>
             <h1 className='text-3xl font-bold '>Bienvenidos a Baggyface</h1>
             <p className='max-w-2xl'>

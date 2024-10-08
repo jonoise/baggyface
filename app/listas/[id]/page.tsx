@@ -155,10 +155,14 @@ const ListDetailsPage = () => {
                     <p className='text-sm text-primary'>
                       &#40;
                       {products.length} prods,{' '}
-                      {products.reduce(
-                        (acc, product) => acc + product.price,
-                        0
-                      )}{' '}
+                      {
+                        <Price
+                          price={products.reduce(
+                            (acc, product) => acc + product.price,
+                            0
+                          )}
+                        />
+                      }{' '}
                       total&#41;
                     </p>
                   </div>
