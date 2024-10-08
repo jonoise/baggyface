@@ -5,21 +5,42 @@ import { Button } from '../ui/button'
 import { useCurrentList, useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
 import { useMediaQuery } from '@/lib/hooks/use-media-query'
+import { RiCloseCircleFill, RiCloseLine } from '@remixicon/react'
 
 export const SearchProductsDialog = () => {
   const list = useCurrentList()
   const { addProductToList } = useListsStore((s) => s)
   const { isMobile } = useMediaQuery()
+  const [open, setOpen] = React.useState(false)
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>+ {!isMobile ? 'Agregar productos' : 'Agregar'}</Button>
-      </DialogTrigger>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        setOpen(open)
+      }}
+    >
+      <Button onClick={() => setOpen(true)}>
+        + {!isMobile ? 'Agregar productos' : 'Agregar'}
+      </Button>
+
       <DialogContent
         hideClose
-        className='max-w-5xl max-h-[80vh] md:max-h-[70vh] overflow-y-auto p-0'
+        className='max-w-5xl max-h-[80vh] md:max-h-[70vh] overflow-y-auto p-0 px-2'
       >
+        <div className='flex items-center justify-between mt-2'>
+          <h3 className='text-xs'>Buscador</h3>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='-ml-10 h-7 w-7 rounded-lg'
+            onClick={() => {
+              setOpen(false)
+            }}
+          >
+            <RiCloseLine className='h-5 w-5' />
+          </Button>
+        </div>
         <SearchProducts
           addToList={{
             listId: list?.id!,
