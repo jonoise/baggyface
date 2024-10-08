@@ -14,7 +14,6 @@ export const ContentTopbar = () => {
       <Breadcrumb />
       <div className='flex items-center space-x-4'>
         <ToggleTheme />
-
         <NavbarSheet />
       </div>
     </nav>
