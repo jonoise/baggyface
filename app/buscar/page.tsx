@@ -5,11 +5,11 @@ import SearchProducts from '@/components/shared/search-products'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 import React from 'react'
-import { RiExchangeDollarFill } from '@remixicon/react'
+import { RiExchangeDollarFill, RiExchangeFill } from '@remixicon/react'
 
 const BuscarPage = () => {
   return (
-    <PageContainer>
+    <PageContainer className='space-y-10'>
       <div className='sm:flex sm:items-center'>
         <div className='sm:flex-auto'>
           <h1 className='text-base font-semibold leading-6'>
@@ -21,15 +21,15 @@ const BuscarPage = () => {
           </p>
         </div>
       </div>
-      <Alert className='max-w-3xl mt-10'>
-        <RiExchangeDollarFill className='h-4 w-4' />
+      <Alert className='max-w-3xl mt-10 '>
+        <RiExchangeFill className='h-4 w-4' />
         <AlertTitle>Los precios pueden variar</AlertTitle>
         <AlertDescription>
           Es posible que los precios no reflejen el precio actual en el
           supermercado. Tratamos de actualizar los precios de forma periódica.
         </AlertDescription>
       </Alert>
-      <SearchProducts withTopMargin />
+      <SearchProducts />
     </PageContainer>
   )
 }

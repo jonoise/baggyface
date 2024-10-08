@@ -11,6 +11,9 @@ import {
 import { ProductI } from '@/lib/models/product'
 import { ALL_CATEGORIES } from '@/lib/globals'
 import { Price } from '@/components/shared/price'
+import { RiExchangeDollarFill } from '@remixicon/react'
+import { Button } from '@/components/ui/button'
+import { useCurrencyStore } from '@/lib/stores/currency-store'
 
 interface CategoryData {
   category: string
@@ -20,6 +23,7 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
   const [categoryData, setCategoryData] = useState<CategoryData[]>([])
   const [totalProducts, setTotalProducts] = useState(0)
   const [totalAmount, setTotalAmount] = useState(0)
+  const { currency, setCurrency } = useCurrencyStore((s) => s)
 
   useEffect(() => {
     processProductData(products)
@@ -51,7 +55,7 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row items-center space-x-8'>
+    <div className='flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-8'>
       <div className='w-full'>
         <p className='text-xs text-muted-foreground'>Gastos por categoría</p>
         <ChartContainer
@@ -81,7 +85,15 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
         <h3>Total de productos</h3>
         <p className='text-xl mt-2 font-bold underline'>{totalProducts}</p>
       </Card>
-      <Card className='p-5 w-full md:w-1/2 flex flex-col items-center justify-center text-center mt-8 md:mt-0 '>
+      <Card className='p-5 w-full md:w-1/2 flex flex-col items-center justify-center text-center relative'>
+        <Button
+          variant={'outline'}
+          size={'icon'}
+          className='absolute top-2 right-4'
+          onClick={() => setCurrency(currency === 'CRC' ? 'USD' : 'CRC')}
+        >
+          <RiExchangeDollarFill className='h-5 w-5' />
+        </Button>
         <h3>Total de gastos</h3>
         <p className='text-xl mt-2 font-bold underline'>
           <Price price={totalAmount} skeletonClassName='h-7 w-20' />

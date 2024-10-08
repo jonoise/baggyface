@@ -19,6 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Price } from '@/components/shared/price'
 
 interface GroupedProductsAcc {
   [category: string]: {
@@ -77,8 +78,7 @@ const ListDetailsPage = () => {
         <h3 className='text-sm font-semibold truncate '>{product.name}</h3>
         <div className='flex items-center justify-between'>
           <p className='text-xs'>
-            Precio:{' '}
-            <span className='underline'>₡{product.price.toFixed(2)}</span>
+            Precio: <Price price={product.price} />
           </p>
           <DeleteProduct product={product} />
         </div>
@@ -87,9 +87,9 @@ const ListDetailsPage = () => {
   }
 
   return (
-    <PageContainer>
-      <div className='flex flex-col space-y-4'>
-        <p className='text-xs text-muted-foreground pl-4'>
+    <PageContainer className='h-full overflow-y-auto'>
+      <div className='flex flex-col space-y-4 p-4'>
+        <p className='text-xs text-muted-foreground'>
           Creada: {new Date(list.createdAt).toLocaleString()}
         </p>
         <input
@@ -109,7 +109,7 @@ const ListDetailsPage = () => {
       <Separator className='my-5' />
       <SpendingSection products={list.products} />
       <Separator className='my-5' />
-      <div className='space-y-10 mt-8'>
+      <div className='space-y-10 mt-8 p-4'>
         <div className='flex items-center justify-between'>
           <h3 className='text-4xl font-semibold'>Productos</h3>
           <div className='flex items-center space-x-2'>

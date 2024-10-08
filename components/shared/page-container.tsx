@@ -7,5 +7,5 @@ export const PageContainer = ({
 }: PropsWithChildren & {
   className?: string
 }) => {
-  return <div className={cn('p-4 xl:p-8', className)}>{children}</div>
+  return <div className={cn('px-4 xl:px-8', className)}>{children}</div>
 }

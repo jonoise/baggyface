@@ -77,10 +77,8 @@ type ProductPropertyI = {
 }
 
 export default function SearchProducts({
-  withTopMargin,
   addToList,
 }: {
-  withTopMargin?: boolean
   addToList?: {
     listId: string
     onAdd: (product: ProductI) => void
@@ -180,9 +178,7 @@ export default function SearchProducts({
   return (
     <div className='flex flex-col h-full relative'>
       <div className='sticky top-0 bg-background z-10 pb-4 border-b border-border '>
-        <div
-          className={cn('flex flex-col space-y-4 ', withTopMargin && 'pt-10')}
-        >
+        <div className={cn('flex flex-col space-y-4 ')}>
           <Input
             type='text'
             placeholder='Busca productos por nombre, categoría o código de barras'
@@ -265,7 +261,7 @@ export default function SearchProducts({
                         <Button
                           size='icon'
                           className='h-6 w-6 rounded-md'
-                          variant='secondary'
+                          variant='outline'
                         >
                           <DotsHorizontalIcon className='h-4 w-4 ' />
                         </Button>

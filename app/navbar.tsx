@@ -36,10 +36,13 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
 
   return (
     <aside className='lg:w-60 z-50 sticky top-0 pt-2 lg:h-screen lg:border-r border-gray-700 flex-shrink-0'>
-      <div className='flex items-center justify-center mb-2 space-x-2 px-2'>
+      <Link
+        href={'/'}
+        className='flex items-center justify-center mb-2 space-x-2 px-2'
+      >
         <img src={`/favicon.ico`} className='h-8 w-8 rounded-full' alt='logo' />
         <h1 className='font-black text-4xl font-boska'>baggyface</h1>
-      </div>
+      </Link>
       <nav className='space-y-1 px-4 mt-8'>
         {links.map((item, index) => (
           <Link

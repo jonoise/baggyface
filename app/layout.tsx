@@ -27,15 +27,16 @@ export default function RootLayout({
       </head>
       <body className={inter.className + ' bg-background'}>
         <AppProviders>
-          <div className='flex h-screen relative overflow-hidden'>
+          <div className='flex md:h-screen overflow-hidden'>
             <div className='hidden lg:block'>
               <Navbar />
             </div>
 
-            <main className='styled-scroll relative flex-1 h-full overflow-y-auto '>
+            <main className='flex-1 flex flex-col overflow-hidden'>
               <ContentTopbar />
-              {children}
+              <div className='flex-1 overflow-y-auto'>{children}</div>
             </main>
+
             <div className='hidden xl:block'>
               <RecipesNavbar />
             </div>
