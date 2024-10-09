@@ -12,6 +12,7 @@ import { ModalsProvider } from './modals'
 import { useExchangeRate } from '@/lib/hooks/use-currency-value'
 import { MobileDock } from '@/components/shared/dock'
 import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -48,6 +49,7 @@ export default function RootLayout({
           <MobileDock />
           <Toaster />
           <ModalsProvider />
+          <Analytics />
         </AppProviders>
       </body>
       <Script
