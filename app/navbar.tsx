@@ -7,6 +7,7 @@ import { CogIcon, FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
+import { StockbasePromo } from '@/components/shared/stockbase-promo'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname()
@@ -100,6 +101,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
             </a>
           ))}
         </div>
+        <StockbasePromo />
       </div>
     </aside>
   )
