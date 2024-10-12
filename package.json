@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.4.2",
+    "@formatjs/intl-localematcher": "^0.5.5",
     "@hookform/resolvers": "^3.9.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -60,6 +61,7 @@
     "mongodb": "^6.8.0",
     "mongoose": "^8.7.0",
     "nanoid": "^5.0.7",
+    "negotiator": "^0.6.3",
     "next": "^14.2.14",
     "next-auth": "^5.0.0-beta.20",
     "next-themes": "^0.3.0",
@@ -86,6 +88,7 @@
     "@tailwindcss/typography": "^0.5.14",
     "@types/lodash": "^4.17.10",
     "@types/mdx": "^2.0.13",
+    "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -1,3 +1,5 @@
+'use client'
+
 import Breadcrumb from '@/components/shared/breadcrumbs'
 import React from 'react'
 import { NavbarSheet } from './navbar-sheets'

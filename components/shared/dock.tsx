@@ -1,3 +1,4 @@
+'use client'
 import { useModalStore } from '@/lib/stores/modal-store'
 import { cn } from '@/lib/utils'
 import { Home, PlusIcon, Search, ShoppingBag, User } from 'lucide-react'

@@ -27,6 +27,9 @@ const Breadcrumb = () => {
           const isLast = index === pathSegments.length - 1
 
           const title = deslugify(segment)
+          if (segment === 'en' || segment === 'es' || segment === 'en-US') {
+            return null
+          }
 
           return (
             <React.Fragment key={href}>

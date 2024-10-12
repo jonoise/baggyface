@@ -1,0 +1,17 @@
+{
+  "common": {
+    "social_media": "Follow us"
+  },
+  "navigation": {
+    "home": "Home",
+    "search": "Search",
+    "list": "List",
+    "settings": "Settings"
+  },
+  "search": {
+    "title": "Search Products",
+    "description": "Search for products, filter by categories and tags, and create shopping lists from your searches.",
+    "disclaimer_title": "Prices may vary",
+    "disclaimer_description": "Prices may not reflect current pricing at the grocery store. We try to update prices periodically."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "common": {
+    "social_media": "Redes Sociales"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "list": "Mis Listas",
+    "settings": "Configuración"
+  },
+  "search": {
+    "title": "Buscar Productos",
+    "description": "Busca productos, filtra por categoría y etiquetas, y crea listas de compras a partir de tus búsquedas.",
+    "disclaimer_title": "Los precios pueden variar",
+    "disclaimer_description": "Es posible que los precios no reflejen el precio actual en el supermercado. Tratamos de actualizar los precios de forma periódica."
+  }
+}
