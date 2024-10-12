@@ -24,15 +24,16 @@ import { priceDistribution } from '@/lib/graphs/brand-analysis'
 
 export const PriceDistribution = () => {
   const { products } = useProducts()
+  const t = useTranslation()
   if (!products) return null
   const priceDistributionData = priceDistribution(products)
 
   return (
-    <Card className='w-full md:max-w-fit  flex-1'>
+    <Card className='w-full flex-1'>
       <CardHeader>
-        <CardTitle>Distribución por precios</CardTitle>
+        <CardTitle>{t.home_page.price_distribution.title}</CardTitle>
         <CardDescription>
-          Número de productos en diferentes rangos de precios
+          {t.home_page.price_distribution.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -67,6 +68,7 @@ export const PriceDistribution = () => {
 }
 
 import { PolarAngleAxis, RadialBar, RadialBarChart } from 'recharts'
+import { useTranslation } from '../shared/i18n-provider'
 
 export default function Component() {
   return (

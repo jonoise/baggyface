@@ -57,12 +57,11 @@ export function TagsInputField({ name, label, control }: TagsInputFieldProps) {
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
-          placeholder='Escribe y presiona Enter para agregar etiquetas'
+          placeholder='Fiesta, dinner, cumpleaños, etc'
           className='flex-grow'
         />
         <Button type='button' onClick={addTag} size='icon' variant='outline'>
           <Plus className='h-4 w-4' />
-          <span className='sr-only'>Agregar tag</span>
         </Button>
       </div>
       <div className='flex flex-wrap gap-2 mt-2'>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from '../shared/i18n-provider'
 
 export const SettingsForm = ({
   title,
@@ -23,6 +24,7 @@ export const SettingsForm = ({
   handleSubmit: any
 }) => {
   const form = useForm()
+  const t = useTranslation()
   useEffect(() => {
     const formObj = { [inputAttrs.name]: inputAttrs.defaultValue }
     form.reset(formObj)
@@ -47,6 +49,18 @@ export const SettingsForm = ({
               <option value='USD'>Dollars</option>
             </select>
           </div>
+        ) : inputAttrs.name === 'language' ? (
+          <div className='flex max-w-sm items-center overflow-hidden rounded-lg'>
+            <select
+              {...form.register(inputAttrs.name)}
+              name='language'
+              defaultValue={inputAttrs.defaultValue}
+              className='w-full rounded-none border-none bg-white px-2 py-2 text-sm font-medium text-stone-700 focus:outline-none focus:ring-black dark:bg-black dark:text-stone-200 dark:focus:ring-white'
+            >
+              <option value='es'>Español</option>
+              <option value='en'>English</option>
+            </select>
+          </div>
         ) : (
           <input
             {...inputAttrs}
@@ -56,9 +70,9 @@ export const SettingsForm = ({
         )}
       </div>
 
-      <div className='flex bg-secondary text-secondary-foreground dark:bg-zinc-800 flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5 dark:border-stone-700 dark:bg-stone-800'>
+      <div className='flex bg-secondary text-secondary-foreground dark:bg-zinc-800 flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5 dark:border-stone-700'>
         <p className='text-sm '>{helpText}</p>
-        <Button>Guardar</Button>
+        <Button>{t.common.save}</Button>
       </div>
     </form>
   )

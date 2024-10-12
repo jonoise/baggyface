@@ -8,29 +8,33 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
 import { StockbasePromo } from '@/components/shared/stockbase-promo'
+import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
+  const { locale } = useLocale()
   const pathname = usePathname()
+  const t = useTranslation()
+
   const links = [
     {
       icon: <HomeIcon size={16} strokeWidth={1.5} />,
-      label: 'Inicio',
-      href: '/',
+      label: t.navigation.home,
+      href: `/${locale}`,
     },
     {
       icon: <SearchIcon size={16} strokeWidth={1.5} />,
-      label: 'Buscar',
-      href: '/buscar',
+      label: t.navigation.search,
+      href: `/${locale}/buscar`,
     },
     {
       icon: <FileTextIcon size={16} strokeWidth={1.5} />,
-      label: 'Mis Listas',
-      href: '/listas',
+      label: t.navigation.list,
+      href: `/${locale}/listas`,
     },
     {
       icon: <CogIcon size={16} strokeWidth={1.5} />,
-      label: 'Configuración',
-      href: '/configuracion',
+      label: t.navigation.settings,
+      href: `/${locale}/configuracion`,
     },
   ]
 
@@ -64,7 +68,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
         ))}
       </nav>
       <div className='px-4 mt-8'>
-        <h2 className='text-sm font-semibold mb-2'>Redes Sociales</h2>
+        <h2 className='text-sm font-semibold mb-2'>{t.common.social_media}</h2>
         <div className='space-y-2'>
           {[
             {

@@ -9,22 +9,19 @@ import { NewProductsAnimatedList } from '@/components/shared/new-products-animat
 import { PageContainer } from '@/components/shared/page-container'
 import { useProducts } from '@/lib/hooks/use-products'
 import { LoadingState } from './listas/[id]/loading-state'
+import { useTranslation } from '@/components/shared/i18n-provider'
 
 export default function Home() {
   const { products } = useProducts()
+  const t = useTranslation()
 
   return (
     <>
       <PageContainer>
         <div className='w-full rounded-2xl py-4 space-y-10'>
           <section className='space-y-4'>
-            <h1 className='text-3xl font-bold '>Bienvenidos a Baggyface</h1>
-            <p className='max-w-2xl'>
-              Baggyface te permite obtener información sobre los productos de
-              venta en las cadenas de supermercados más populares de Costa Rica
-              y hacer listas de compra. Sirve para budgetear y planificar tus
-              compras en el súper.
-            </p>
+            <h1 className='text-3xl font-bold '>{t.home_page.title}</h1>
+            <p className='max-w-2xl'>{t.home_page.description}</p>
             <NewListDialog />
           </section>
 
@@ -63,7 +60,10 @@ export default function Home() {
         ) : (
           <>
             <div className='space-y-8'>
-              <h3>Resultados basados en {products?.length} productos</h3>
+              <h3>
+                {t.home_page.results_helpText} {products?.length}{' '}
+                {t.common.products.toLowerCase()}
+              </h3>
               <div className='flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8'>
                 <PriceRangeDistribution />
                 <BrandsWithHighMarketShare />

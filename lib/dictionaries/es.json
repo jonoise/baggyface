@@ -1,0 +1,186 @@
+{
+  "common": {
+    "social_media": "Redes Sociales",
+    "add_to_list": "Agregar a lista",
+    "new_list": "Nueva lista",
+    "name": "Nombre",
+    "category": "Categoría",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "products": "Productos",
+    "list": "Lista",
+    "title": "Título",
+    "description": "Descripción",
+    "tags": "Tags",
+    "created_at": "Creado",
+    "updated_at": "Actualizado",
+    "list_name": "Nombre de la lista",
+    "list_description": "Descripción de la lista",
+    "save": "Guardar",
+    "saving": "Guardando...",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "confirm_delete": "Deseas eliminar esta lista?",
+    "edit": "Editar",
+    "search": "Buscar",
+    "add": "Agregar",
+    "add_products": "Agregar productos",
+    "currency": "Moneda",
+    "low": "Bajo",
+    "medium": "Medio",
+    "high": "Alto",
+    "brand": "Marca",
+    "average": "Promedio"
+  },
+  "components": {
+    "search": {
+      "input": "Busca productos por nombre, categoría o código de barras",
+      "filter_by_category": "Todas las categorías",
+      "filter_by_price": "Rango de precios"
+    },
+    "spending_section": {
+      "spending_by_category": "Gastos por categoría",
+      "total_products": "Productos totales",
+      "total_spending": "Monto total"
+    }
+  },
+  "navigation": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "list": "Mis Listas",
+    "settings": "Configuración"
+  },
+  "search": {
+    "title": "Buscar Productos",
+    "description": "Busca productos, filtra por categoría y etiquetas, y crea listas de compras a partir de tus búsquedas.",
+    "disclaimer_title": "Los precios pueden variar",
+    "disclaimer_description": "Es posible que los precios no reflejen el precio actual en el supermercado. Tratamos de actualizar los precios de forma periódica."
+  },
+  "lists": {
+    "title": "Mis listas",
+    "description": "Todas las listas se archivan en el navegador, así que no puedes acceder a ellas desde otro dispositivo."
+  },
+  "lists_details": {
+    "no_products": "No hay productos en la lista",
+    "title_placeholder": "Título",
+    "description_placeholder": "Descripción de la lista"
+  },
+  "home_page": {
+    "title": "Bienvenidos a Baggyface",
+    "description": "Baggyface te permite obtener información sobre los productos de venta en las cadenas de supermercados más populares de Costa Rica y hacer listas de compra. Sirve para budgetear y planificar tus compras en el súper.",
+    "price_distribution": {
+      "title": "Distribución de precios",
+      "description": "Distribución en tres rangos de precios."
+    },
+    "market_share": {
+      "title": "Top 5 maras con más productos",
+      "description": "Las 5 marcas con más productos en los supermercados de Walmart.",
+      "helpText": "Otras marcas que no aparecen en la lista"
+    },
+    "average_price_by_brand": {
+      "title": "Precio promedio por marca",
+      "description": "Comparación de precios promedios de productos entre marcas, ordenadas alfabéticamente.",
+      "no_brands": "No se encontraron"
+    },
+    "price_range_distribution": {
+      "title": "Distribución de precios",
+      "description": "Número de productos en diferentes rangos de precios"
+    },
+    "results_helpText": "Resultados basados en"
+  },
+  "settings_page": {
+    "title": "Configuración",
+    "description": "Aquí podrás configurar tus preferencias y opciones.",
+    "currency": "Moneda",
+    "currency_description": "Selecciona tu moneda",
+    "currency_helpText": "Selecciona la moneda en la que deseas visualizar tus precios",
+    "language": "Idioma",
+    "language_description": "Selecciona el idioma",
+    "language_helpText": "Traduciremos el contenido en el idioma seleccionado",
+    "theme": "Color de tema",
+    "theme_description": "Selecciona tu tema preferido",
+    "theme_helpText": "Se recomienda usar el modo oscuro cuando uses la aplicación en lugares oscuros"
+  },
+  "notifiacations": {
+    "was_updated": "se actualizó correctamente.",
+    "added": "se agregó correctamente.",
+    "deleted": "eliminado."
+  },
+  "ALL_CATEGORIES": [
+    {
+      "value": "abarrotes/dulces-y-chocolates",
+      "label": "Confites y Chocolates"
+    },
+    {
+      "value": "jugos-y-bebidas",
+      "label": "Jugos y Bebidas"
+    },
+    { "value": "abarrotes/snacks-y-fruta-seca", "label": "Snacks" },
+    {
+      "value": "abarrotes/enlatados-y-conservas",
+      "label": "Enlatados"
+    },
+    {
+      "value": "abarrotes/pastas",
+      "label": "Pastas"
+    },
+    { "value": "abarrotes/galletas", "label": "Galletas" },
+    {
+      "value": "abarrotes/salsa-aderezos-y-vinagre",
+      "label": "Salsas y Aderezos"
+    },
+    {
+      "value": "abarrotes/cereales-y-barras",
+      "label": "Cereales y Barras"
+    },
+    {
+      "value": "abarrotes/cafe-te-y-sustitutos",
+      "label": "Café, Té y Sustitutos"
+    },
+    {
+      "value": "abarrotes/especiales-y-sazonadores",
+      "label": "Especias"
+    },
+    {
+      "value": "abarrotes/harinas-y-reposteria",
+      "label": "Harinas"
+    },
+    {
+      "value": "abarrotes/mermeladas-y-miel",
+      "label": "Mermeladas y Miel"
+    },
+    {
+      "value": "abarrotes/arroz-frijol-y-semillas",
+      "label": "Arroz, Frijoles y Semillas"
+    },
+    { "value": "abarrotes/aceites-de-cocina", "label": "Aceites" },
+    {
+      "value": "abarrotes/azucar-y-postres",
+      "label": "Azúcar y Postres"
+    },
+    {
+      "value": "abarrotes/alimentos-instantaneos",
+      "label": "Instantáneos"
+    },
+    {
+      "value": "abarrotes/especias-y-sazonadores",
+      "label": "Sazonadores"
+    },
+    {
+      "value": "abarrotes/productos-vegetales-y-veganos",
+      "label": "Veganos"
+    },
+    { "value": "cervezas-vinos-y-licores", "label": "Licores" },
+    { "value": "alimentos-congelados", "label": "Congelados" },
+    { "value": "panaderia-y-tortilleria", "label": "Panadería" },
+    { "value": "lacteos", "label": "Lácteos" },
+    { "value": "embutidos", "label": "Embutidos" },
+    { "value": "frutas-y-verduras", "label": "Frutas y Verduras" },
+    { "value": "carnes-y-pescados", "label": "Carnes y Pescados" },
+    { "value": "limpieza", "label": "Limpieza" },
+    { "value": "bebes-y-ninos", "label": "Bebés y Niños" },
+    { "value": "higiene-y-belleza", "label": "Higiene" },
+    { "value": "farmacia", "label": "Farmacia" },
+    { "value": "mascota", "label": "Mascotas" }
+  ]
+}
