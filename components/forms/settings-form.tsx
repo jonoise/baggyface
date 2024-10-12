@@ -49,6 +49,18 @@ export const SettingsForm = ({
               <option value='USD'>Dollars</option>
             </select>
           </div>
+        ) : inputAttrs.name === 'language' ? (
+          <div className='flex max-w-sm items-center overflow-hidden rounded-lg'>
+            <select
+              {...form.register(inputAttrs.name)}
+              name='language'
+              defaultValue={inputAttrs.defaultValue}
+              className='w-full rounded-none border-none bg-white px-2 py-2 text-sm font-medium text-stone-700 focus:outline-none focus:ring-black dark:bg-black dark:text-stone-200 dark:focus:ring-white'
+            >
+              <option value='es'>Español</option>
+              <option value='en'>English</option>
+            </select>
+          </div>
         ) : (
           <input
             {...inputAttrs}

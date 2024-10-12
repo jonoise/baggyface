@@ -68,7 +68,6 @@
   "home_page": {
     "title": "Welcome to Baggyface",
     "description": "Baggyface allows you to obtain information about products sold in the most popular supermarket chains in Costa Rica and make shopping lists. It is useful for budgeting and planning your purchases at the supermarket.",
-
     "price_distribution": {
       "title": "Price distribution",
       "description": "Distribution in three price ranges"

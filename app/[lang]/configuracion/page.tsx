@@ -1,18 +1,27 @@
 'use client'
 import { SettingsForm } from '@/components/forms/settings-form'
-import { useTranslation } from '@/components/shared/i18n-provider'
+import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 import { PageContainer } from '@/components/shared/page-container'
 import { useCurrencyStore } from '@/lib/stores/currency-store'
+import { stripLocate } from '@/lib/strings'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 const ConfigPage = () => {
   const { currency, setCurrency } = useCurrencyStore((s) => s)
-  const [defaultCurrency, setDefaultCurrency] = useState(currency)
+  const router = useRouter()
+  const pathname = usePathname()
+  const { locale } = useLocale()
+
+  const [defaults, setDefaults] = useState({
+    currency,
+    language: locale,
+  })
+
   const t = useTranslation()
   useEffect(() => {
-    console.log({ currency })
-    setDefaultCurrency(currency)
+    setDefaults((prev) => ({ ...prev, currency, language: locale }))
   }, [currency])
 
   return (
@@ -31,12 +40,29 @@ const ConfigPage = () => {
         description={t.settings_page.currency_description}
         inputAttrs={{
           name: 'currency',
-          defaultValue: defaultCurrency,
+          defaultValue: defaults.currency,
           type: 'select',
         }}
         handleSubmit={(data: any) => {
           setCurrency(data.currency)
           toast.success(`${t.common.currency} ${t.notifiacations.was_updated}`)
+        }}
+      />
+      <SettingsForm
+        helpText={t.settings_page.language_helpText}
+        title={t.settings_page.language}
+        description={t.settings_page.language_description}
+        inputAttrs={{
+          name: 'language',
+          defaultValue: defaults.language,
+          type: 'select',
+        }}
+        handleSubmit={(data: any) => {
+          const path = stripLocate(pathname)
+          router.replace(`/${data.language}/${path}`)
+          toast.success(
+            `${t.settings_page.language} ${t.notifiacations.was_updated}`
+          )
         }}
       />
     </PageContainer>

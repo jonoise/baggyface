@@ -79,7 +79,8 @@
     },
     "average_price_by_brand": {
       "title": "Precio promedio por marca",
-      "description": "Comparación de precios promedios de productos entre marcas, ordenadas alfabéticamente."
+      "description": "Comparación de precios promedios de productos entre marcas, ordenadas alfabéticamente.",
+      "no_brands": "No se encontraron"
     },
     "price_range_distribution": {
       "title": "Distribución de precios",
