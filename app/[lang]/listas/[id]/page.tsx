@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/accordion'
 import { Price } from '@/components/shared/price'
 import { useTranslation } from '@/components/shared/i18n-provider'
+import { CATEGORY_ICONS } from '@/lib/globals'
 
 interface GroupedProductsAcc {
   [category: string]: {
@@ -66,6 +67,8 @@ const ListDetailsPage = () => {
 
   const renderProduct = (product: ProductI) => {
     const category = t.ALL_CATEGORIES.find((c) => c.value === product.category)
+    const CategoryIcon =
+      CATEGORY_ICONS[category?.value as keyof typeof CATEGORY_ICONS]
     return (
       <div
         key={product._id}
@@ -73,7 +76,7 @@ const ListDetailsPage = () => {
       >
         <div className='flex items-center justify-between'>
           <div className='flex items-center space-x-2'>
-            {category?.Icon && <category.Icon className='h-4 w-4' />}
+            {CategoryIcon && <CategoryIcon className='h-4 w-4' />}
             <p className='text-xs text-muted-foreground'>{category?.label}</p>
           </div>
           <p className='text-xs text-muted-foreground'>{product.brand}</p>
