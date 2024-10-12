@@ -17,7 +17,11 @@ export const StockbasePromo = ({
 }) => {
   return (
     <div className='mt-10'>
-      <Link href='/' className='space-x-1 flex items-center text-xs mb-2'>
+      <Link
+        target='_blank'
+        href={`https://stockbase.cr?ref=baggyface.com`}
+        className='space-x-1 flex items-center text-xs mb-2'
+      >
         <p>Ads</p>
         <RiExternalLinkLine className='w-4 h-4' />
       </Link>
