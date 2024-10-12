@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { ALL_CATEGORIES } from '@/lib/globals'
+
 import { useDebounce } from 'use-debounce'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
@@ -35,6 +35,8 @@ import { useProducts } from '@/lib/hooks/use-products'
 import { useModalStore } from '@/lib/stores/modal-store'
 import { Price } from './price'
 import { RiCloseCircleFill } from '@remixicon/react'
+import { useTranslation } from './i18n-provider'
+import { CATEGORY_ICONS } from '@/lib/globals'
 
 interface ProductI {
   _id: string
@@ -76,6 +78,7 @@ export default function SearchProducts({
 }) {
   const { products } = useProducts()
   const { newList } = useModalStore((s) => s)
+  const t = useTranslation()
 
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
@@ -175,7 +178,7 @@ export default function SearchProducts({
               ref={searchTermRef}
               className='w-full'
               type='text'
-              placeholder='Busca productos por nombre, categoría o código de barras'
+              placeholder={t.components.search.input}
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value)
@@ -204,11 +207,15 @@ export default function SearchProducts({
               }
             >
               <SelectTrigger className='md:w-[180px] w-[50%]'>
-                <SelectValue placeholder='Todas las categorías' />
+                <SelectValue
+                  placeholder={t.components.search.filter_by_category}
+                />
               </SelectTrigger>
               <SelectContent className='max-h-52'>
-                <SelectItem value='all'>Todas las categorías</SelectItem>
-                {ALL_CATEGORIES.map((category) => (
+                <SelectItem value='all'>
+                  {t.components.search.filter_by_category}
+                </SelectItem>
+                {t.ALL_CATEGORIES.map((category) => (
                   <SelectItem key={category.value} value={category.value}>
                     {category.label}
                   </SelectItem>
@@ -217,7 +224,9 @@ export default function SearchProducts({
             </Select>
             <Select onValueChange={(value) => setSelectedPriceRange(value)}>
               <SelectTrigger className='md:w-[180px] w-[50%]'>
-                <SelectValue placeholder='Rango de precios' />
+                <SelectValue
+                  placeholder={t.components.search.filter_by_price}
+                />
               </SelectTrigger>
               <SelectContent className='max-h-52'>
                 {priceRanges.map((range) => (
@@ -233,9 +242,11 @@ export default function SearchProducts({
       <ScrollArea className='flex-grow'>
         <div className='py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
           {displayedProducts.map((product, index) => {
-            const category = ALL_CATEGORIES.find(
+            const category = t.ALL_CATEGORIES.find(
               (c) => c.value === product.category
             )
+            const CategoryIcon =
+              CATEGORY_ICONS[category?.value as keyof typeof CATEGORY_ICONS]
             return (
               <div
                 key={product._id}
@@ -249,7 +260,7 @@ export default function SearchProducts({
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center space-x-2'>
                     <p className='text-xs'>
-                      {category?.Icon && <category.Icon className='h-4 w-4' />}
+                      {CategoryIcon && <CategoryIcon className='h-4 w-4' />}
                     </p>
                     <p className='text-xs text-muted-foreground'>
                       {category?.label}
@@ -263,7 +274,6 @@ export default function SearchProducts({
                       variant='ghost'
                     >
                       <PlusIcon className='h-4 w-4' />
-                      <span className='sr-only'>Agregar a la lista</span>
                     </Button>
                   ) : (
                     <DropdownMenu modal={false}>
@@ -285,7 +295,7 @@ export default function SearchProducts({
                           <DropdownMenuSub>
                             <DropdownMenuSubTrigger>
                               <FilePlus2 className='mr-2 h-4 w-4' />
-                              <span>Agregar a lista</span>
+                              <span>{t.common.add_to_list}</span>
                             </DropdownMenuSubTrigger>
                             <DropdownMenuPortal>
                               <DropdownMenuSubContent>
@@ -306,7 +316,7 @@ export default function SearchProducts({
                                   onClick={() => newList.setOpen(true)}
                                 >
                                   <PlusCircle className='mr-2 h-4 w-4' />
-                                  <span>Nueva Lista</span>
+                                  <span>{t.common.new_list}</span>
                                 </DropdownMenuItem>
                               </DropdownMenuSubContent>
                             </DropdownMenuPortal>
@@ -320,7 +330,7 @@ export default function SearchProducts({
                   {product.name}
                 </h3>
                 <p className='text-xs'>
-                  Precio:{' '}
+                  {t.common.price}:{' '}
                   <span className='underline'>
                     <Price price={product.price} />
                   </span>

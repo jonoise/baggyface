@@ -8,9 +8,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
 import { StockbasePromo } from '@/components/shared/stockbase-promo'
-import { useTranslation } from '@/components/shared/i18n-provider'
+import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
+  const { locale } = useLocale()
   const pathname = usePathname()
   const t = useTranslation()
 
@@ -18,22 +19,22 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
     {
       icon: <HomeIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.home,
-      href: '/',
+      href: `/${locale}`,
     },
     {
       icon: <SearchIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.search,
-      href: '/buscar',
+      href: `/${locale}/buscar`,
     },
     {
       icon: <FileTextIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.list,
-      href: '/listas',
+      href: `/${locale}/listas`,
     },
     {
       icon: <CogIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.settings,
-      href: '/configuracion',
+      href: `/${locale}/configuracion`,
     },
   ]
 

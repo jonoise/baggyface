@@ -5,6 +5,7 @@ import React from 'react'
 import { NavbarSheet } from './navbar-sheets'
 import { ToggleTheme } from '@/components/shared/toggle-theme'
 import Link from 'next/link'
+import { LocaleSettings } from '@/components/shared/translate-button'
 
 export const ContentTopbar = () => {
   return (
@@ -15,6 +16,7 @@ export const ContentTopbar = () => {
       </Link>
       <Breadcrumb />
       <div className='flex items-center space-x-4'>
+        <LocaleSettings />
         <ToggleTheme />
         <NavbarSheet />
       </div>

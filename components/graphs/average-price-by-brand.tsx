@@ -33,6 +33,7 @@ import { useProducts } from '@/lib/hooks/use-products'
 import { renderPrice } from '@/lib/render-price'
 import { useExchangeRate } from '@/lib/hooks/use-currency-value'
 import { useCurrencyStore } from '@/lib/stores/currency-store'
+import { useTranslation } from '../shared/i18n-provider'
 
 interface BrandPrice {
   brand: string
@@ -59,6 +60,7 @@ export default function AveragePriceByBrand() {
   const { products } = useProducts()
   const { exchange } = useExchangeRate()
   const { currency } = useCurrencyStore((s) => s)
+  const t = useTranslation()
   const brandPriceData = averagePriceByBrand(products)
   const [selectedRange, setSelectedRange] = useState<string>('A - B')
 
@@ -76,7 +78,7 @@ export default function AveragePriceByBrand() {
     <Card className='col-span-1'>
       <CardHeader>
         <div className='flex items-center justify-between'>
-          <CardTitle>Precio promedio por marca</CardTitle>
+          <CardTitle>{t.home_page.average_price_by_brand.title}</CardTitle>
           <div>
             <Select
               onValueChange={setSelectedRange}
@@ -96,8 +98,7 @@ export default function AveragePriceByBrand() {
           </div>
         </div>
         <CardDescription>
-          Comparación de precios promedios de productos entre marcas, ordenadas
-          alfabéticamente.
+          {t.home_page.average_price_by_brand.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -110,11 +111,12 @@ export default function AveragePriceByBrand() {
               <ChartTooltip
                 labelFormatter={(value) => (
                   <p className='text-primary'>
-                    Marca: <strong className='text-foreground'>{value}</strong>
+                    {t.common.brand}:{' '}
+                    <strong className='text-foreground'>{value}</strong>
                   </p>
                 )}
                 formatter={(value) =>
-                  `Promedio:  ${renderPrice({
+                  `${t.common.average}:  ${renderPrice({
                     price: value as number,
                     currency,
                     exchange,
@@ -128,7 +130,7 @@ export default function AveragePriceByBrand() {
         </ChartContainer>
         {filteredData.length === 0 && (
           <p className='text-center text-muted-foreground mt-4'>
-            No brands found in this range.
+            {t.home_page.average_price_by_brand.no_brands}
           </p>
         )}
       </CardContent>

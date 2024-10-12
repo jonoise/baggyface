@@ -8,13 +8,7 @@ export const ToggleTheme = () => {
   const [icon, setIcon] = React.useState<React.ReactNode | null>(null)
 
   React.useEffect(() => {
-    setIcon(
-      theme === 'dark' ? (
-        <SunIcon size={16} strokeWidth={1.5} />
-      ) : (
-        <MoonIcon size={16} strokeWidth={1.5} />
-      )
-    )
+    setIcon(theme === 'dark' ? <SunIcon size={16} /> : <MoonIcon size={16} />)
   }, [theme])
   return (
     <button

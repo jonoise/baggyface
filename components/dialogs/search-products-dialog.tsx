@@ -6,12 +6,14 @@ import { useCurrentList, useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
 import { useMediaQuery } from '@/lib/hooks/use-media-query'
 import { RiCloseCircleFill, RiCloseLine } from '@remixicon/react'
+import { useTranslation } from '../shared/i18n-provider'
 
 export const SearchProductsDialog = () => {
   const list = useCurrentList()
   const { addProductToList } = useListsStore((s) => s)
   const { isMobile } = useMediaQuery()
   const [open, setOpen] = React.useState(false)
+  const t = useTranslation()
 
   return (
     <Dialog
@@ -21,7 +23,7 @@ export const SearchProductsDialog = () => {
       }}
     >
       <Button onClick={() => setOpen(true)}>
-        + {!isMobile ? 'Agregar productos' : 'Agregar'}
+        + {!isMobile ? t.common.add_products : t.common.add}
       </Button>
 
       <DialogContent
@@ -29,7 +31,7 @@ export const SearchProductsDialog = () => {
         className='max-w-5xl max-h-[80vh] md:max-h-[70vh] overflow-y-auto p-0 px-2'
       >
         <div className='flex items-center justify-between mt-2'>
-          <h3 className='text-xs'>Buscador</h3>
+          <h3 className='text-xs'>{t.common.search}</h3>
           <Button
             variant='ghost'
             size='icon'

@@ -1,11 +1,53 @@
 {
   "common": {
-    "social_media": "Follow us"
+    "social_media": "Follow us",
+    "add_to_list": "Add to list",
+    "new_list": "New List",
+    "name": "Name",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "products": "Products",
+    "list": "List",
+    "title": "Title",
+    "description": "Description",
+    "tags": "Tags",
+    "created_at": "Created at",
+    "updated_at": "Updated at",
+    "list_name": "List name",
+    "list_description": "List description",
+    "save": "Save",
+    "saving": "Saving...",
+    "delete": "Delete",
+    "deleting": "Deleting...",
+    "confirm_delete": "Are you sure you want to delete this list?",
+    "edit": "Edit",
+    "search": "Search",
+    "add": "Add",
+    "add_products": "Add products",
+    "currency": "Currency",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "brand": "Brand",
+    "average": "Average"
+  },
+  "components": {
+    "search": {
+      "input": "Search products by name, category or barcode",
+      "filter_by_category": "Filter by category",
+      "filter_by_price": "Filter by price range"
+    },
+    "spending_section": {
+      "spending_by_category": "Spending by category",
+      "total_products": "Total products",
+      "total_spending": "Total amount"
+    }
   },
   "navigation": {
     "home": "Home",
     "search": "Search",
-    "list": "List",
+    "list": "My lists",
     "settings": "Settings"
   },
   "search": {
@@ -13,5 +55,133 @@
     "description": "Search for products, filter by categories and tags, and create shopping lists from your searches.",
     "disclaimer_title": "Prices may vary",
     "disclaimer_description": "Prices may not reflect current pricing at the grocery store. We try to update prices periodically."
-  }
+  },
+  "lists": {
+    "title": "My Lists",
+    "description": "All lists are archived in the browser, so you cannot access them from another device."
+  },
+  "lists_details": {
+    "no_products": "No products in this list",
+    "title_placeholder": "List title",
+    "description_placeholder": "List description"
+  },
+  "home_page": {
+    "title": "Welcome to Baggyface",
+    "description": "Baggyface allows you to obtain information about products sold in the most popular supermarket chains in Costa Rica and make shopping lists. It is useful for budgeting and planning your purchases at the supermarket.",
+
+    "price_distribution": {
+      "title": "Price distribution",
+      "description": "Distribution in three price ranges"
+    },
+    "market_share": {
+      "title": "Top 5 brands with the most products",
+      "description": "The 5 brands with the most products in Walmart supermarkets.",
+      "helpText": "Other brands not listed"
+    },
+    "average_price_by_brand": {
+      "title": "Average price per brand",
+      "description": "Comparison of average product prices between brands, sorted alphabetically.",
+      "no_brands": "No brands found"
+    },
+    "price_range_distribution": {
+      "title": "Price distribution",
+      "description": "Number of products in different price ranges"
+    },
+    "results_helpText": "Results based on"
+  },
+  "settings_page": {
+    "title": "Settings",
+    "description": "Manage your account settings and preferences.",
+    "currency": "Currency",
+    "currency_description": "Select your preferred currency.",
+    "currency_helpText": "Currency is used to display prices.",
+    "language": "Language",
+    "language_description": "Select your preferred language.",
+    "language_helpText": "Language is used to display content.",
+    "theme": "Theme",
+    "theme_description": "Select your preferred theme.",
+    "theme_helpText": "Dark theme is recommended when using the app in dark places."
+  },
+  "notifiacations": {
+    "was_updated": "updated successfully.",
+    "added": "added successfully.",
+    "deleted": "deleted."
+  },
+  "ALL_CATEGORIES": [
+    {
+      "value": "abarrotes/dulces-y-chocolates",
+      "label": "Candies and Chocolates"
+    },
+    {
+      "value": "jugos-y-bebidas",
+      "label": "Juices and Beverages"
+    },
+    { "value": "abarrotes/snacks-y-fruta-seca", "label": "Snacks" },
+    {
+      "value": "abarrotes/enlatados-y-conservas",
+      "label": "Canned Goods"
+    },
+    {
+      "value": "abarrotes/pastas",
+      "label": "Pasta"
+    },
+    { "value": "abarrotes/galletas", "label": "Cookies" },
+    {
+      "value": "abarrotes/salsa-aderezos-y-vinagre",
+      "label": "Sauces and Dressings"
+    },
+    {
+      "value": "abarrotes/cereales-y-barras",
+      "label": "Cereals and Bars"
+    },
+    {
+      "value": "abarrotes/cafe-te-y-sustitutos",
+      "label": "Coffee, Tea, and Substitutes"
+    },
+    {
+      "value": "abarrotes/especiales-y-sazonadores",
+      "label": "Spices"
+    },
+    {
+      "value": "abarrotes/harinas-y-reposteria",
+      "label": "Flours"
+    },
+    {
+      "value": "abarrotes/mermeladas-y-miel",
+      "label": "Jams and Honey"
+    },
+    {
+      "value": "abarrotes/arroz-frijol-y-semillas",
+      "label": "Rice, Beans, and Seeds"
+    },
+    { "value": "abarrotes/aceites-de-cocina", "label": "Cooking Oils" },
+    {
+      "value": "abarrotes/azucar-y-postres",
+      "label": "Sugar and Desserts"
+    },
+    {
+      "value": "abarrotes/alimentos-instantaneos",
+      "label": "Instant Foods"
+    },
+    {
+      "value": "abarrotes/especias-y-sazonadores",
+      "label": "Seasonings"
+    },
+    {
+      "value": "abarrotes/productos-vegetales-y-veganos",
+      "label": "Vegan Products"
+    },
+    { "value": "cervezas-vinos-y-licores", "label": "Liquor" },
+    { "value": "alimentos-congelados", "label": "Frozen Foods" },
+    { "value": "panaderia-y-tortilleria", "label": "Bakery" },
+    { "value": "lacteos", "label": "Dairy" },
+    { "value": "embutidos", "label": "Cold Cuts" },
+    { "value": "frutas-y-verduras", "label": "Fruits and Vegetables" },
+    { "value": "carnes-y-pescados", "label": "Meat and Fish" },
+    { "value": "limpieza", "label": "Cleaning" },
+    { "value": "bebes-y-ninos", "label": "Babies and Kids" },
+    { "value": "higiene-y-belleza", "label": "Hygiene" },
+    { "value": "farmacia", "label": "Pharmacy" },
+    { "value": "mascota", "label": "Pets" }
+  ]
 }

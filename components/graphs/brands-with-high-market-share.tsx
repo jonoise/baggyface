@@ -17,11 +17,13 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart'
 import { useProducts } from '@/lib/hooks/use-products'
+import { useTranslation } from '../shared/i18n-provider'
 
 export const description = 'A horizontal bar chart'
 
 export function BrandsWithHighMarketShare() {
   const { products } = useProducts()
+  const t = useTranslation()
   const brandData = _.chain(products)
     .groupBy('brand')
     .map((value, key) => ({ brand: key, count: value.length }))
@@ -35,9 +37,9 @@ export function BrandsWithHighMarketShare() {
   return (
     <Card className='w-full'>
       <CardHeader>
-        <CardTitle>Top 5 Marcas con más market share</CardTitle>
+        <CardTitle>{t.home_page.market_share.title}</CardTitle>
         <CardDescription>
-          Las 5 marcas con más productos en los supermercados de Walmart.
+          {t.home_page.market_share.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -61,7 +63,9 @@ export function BrandsWithHighMarketShare() {
               hide
             />
             <ChartTooltip
-              formatter={(value) => `Total: ${value} productos`}
+              formatter={(value) =>
+                `Total: ${value} ${t.common.products.toLowerCase()}`
+              }
               cursor={false}
               content={<ChartTooltipContent />}
             />
@@ -79,7 +83,7 @@ export function BrandsWithHighMarketShare() {
       </CardContent>
       <CardFooter>
         <p className='text-muted-foreground'>
-          Otras marcas que no aparecen en la lista:{' '}
+          {t.home_page.market_share.helpText}:{' '}
           {top10BrandData.map((item, i) => (
             <span key={item.brand}>
               {item.brand}
