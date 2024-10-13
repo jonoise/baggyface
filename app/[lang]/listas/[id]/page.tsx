@@ -117,7 +117,7 @@ const ListDetailsPage = () => {
       <Separator className='my-5' />
       <SpendingSection products={list.products} />
       <Separator className='my-5' />
-      <div className='space-y-10 mt-8 p-4'>
+      <div className='space-y-10 mt-8'>
         <div className='flex items-center justify-between'>
           <h3 className='text-xl md:text-4xl font-semibold'>
             {t.common.products}
