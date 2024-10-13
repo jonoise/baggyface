@@ -1,3 +1,4 @@
+import { useTranslation } from '@/components/shared/i18n-provider'
 import { Button } from '@/components/ui/button'
 import {
   DialogContent,
@@ -15,6 +16,7 @@ import { toast } from 'sonner'
 export const DeleteProduct = ({ product }: { product: ProductI }) => {
   const [open, setOpen] = React.useState(false)
   const list = useCurrentList()
+  const t = useTranslation()
   const { removeProductFromList } = useListsStore((s) => s)
   return (
     <>
@@ -31,22 +33,24 @@ export const DeleteProduct = ({ product }: { product: ProductI }) => {
         open={open}
         setOpen={setOpen}
       >
-        <DialogTitle>Eliminar producto</DialogTitle>
+        <DialogTitle>{t.components.delete_product.title}</DialogTitle>
         <div>
-          <p>Deseas eliminar {product.name} de la lista?</p>
+          <p>
+            {t.components.delete_product.description} {product.name}?
+          </p>
           <div className='mt-4 flex justify-end gap-4'>
             <Button variant={'outline'} onClick={() => setOpen(false)}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button
               onClick={() => {
                 removeProductFromList(list?.id!, product._id)
                 setOpen(false)
-                toast.success('Producto eliminado')
+                toast.success(t.components.delete_product.on_success)
               }}
               variant='destructive'
             >
-              Eliminar
+              {t.common.delete}
             </Button>
           </div>
         </div>

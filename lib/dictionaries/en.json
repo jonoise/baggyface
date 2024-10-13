@@ -30,7 +30,8 @@
     "medium": "Medium",
     "high": "High",
     "brand": "Brand",
-    "average": "Average"
+    "average": "Average",
+    "cancel": "Cancel"
   },
   "components": {
     "search": {
@@ -42,6 +43,11 @@
       "spending_by_category": "Spending by category",
       "total_products": "Total products",
       "total_spending": "Total amount"
+    },
+    "delete_product": {
+      "title": "Delete product",
+      "description": "Are you sure you want to delete",
+      "on_success": "Product deleted successfully"
     }
   },
   "navigation": {
