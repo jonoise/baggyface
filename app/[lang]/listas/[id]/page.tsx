@@ -119,7 +119,9 @@ const ListDetailsPage = () => {
       <Separator className='my-5' />
       <div className='space-y-10 mt-8 p-4'>
         <div className='flex items-center justify-between'>
-          <h3 className='text-4xl font-semibold'>{t.common.products}</h3>
+          <h3 className='text-xl md:text-4xl font-semibold'>
+            {t.common.products}
+          </h3>
           <div className='flex items-center space-x-2'>
             <SearchProductsDialog />
             <Button
@@ -155,7 +157,7 @@ const ListDetailsPage = () => {
               >
                 <AccordionTrigger className='hover:no-underline hover:bg-accent'>
                   <div className='flex flex-col items-start md:items-center md:flex-row md:space-x-2'>
-                    <h4 className='text-2xl text-muted-foreground'>
+                    <h4 className='md:text-2xl text-muted-foreground'>
                       {category?.label}
                     </h4>
                     <p className='text-sm text-primary'>
