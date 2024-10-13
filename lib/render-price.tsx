@@ -23,7 +23,6 @@ export const renderPrice = (
     price: 0,
   }
 ) => {
-  console.log({ price, currency, exchange })
   if (!exchange) {
     return <Skeleton className={cn(`h-4 w-12`, skeletonClassName)} />
   }

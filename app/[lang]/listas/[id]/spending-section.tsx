@@ -38,7 +38,7 @@ export const SpendingSection = ({ products }: { products: ProductI[] }) => {
     products.forEach((product) => {
       const { category, price } = product
       const foundCategory = t.ALL_CATEGORIES.find((c) => c.value === category)
-      console.log({ foundCategory })
+
       categoryMap.set(
         foundCategory?.label!,
         (categoryMap.get(foundCategory?.label!) || 0) + price

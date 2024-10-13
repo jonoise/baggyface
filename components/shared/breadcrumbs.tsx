@@ -26,7 +26,7 @@ const Breadcrumb = () => {
         </li>
         {pathSegments.map((segment, index) => {
           const href = `/${pathSegments.slice(0, index + 1).join('/')}`
-          console.log({ href })
+
           const isLast = index === pathSegments.length - 1
 
           const title = deslugify(segment)
