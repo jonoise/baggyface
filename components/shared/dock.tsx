@@ -4,17 +4,20 @@ import { cn } from '@/lib/utils'
 import { Home, PlusIcon, Search, ShoppingBag, User } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLocale, useTranslation } from './i18n-provider'
 
 export function MobileDock() {
+  const t = useTranslation()
   const pathname = usePathname()
+  const { locale } = useLocale()
   const { newList } = useModalStore((s) => s)
   const navItems = [
-    { icon: Home, label: 'Inicio', href: '/' },
-    { icon: Search, label: 'Buscar', href: '/buscar' },
-    { icon: ShoppingBag, label: 'Listas', href: '/listas' },
+    { icon: Home, label: t.navigation.home, href: `/${locale}` },
+    { icon: Search, label: t.navigation.search, href: `/${locale}/buscar` },
+    { icon: ShoppingBag, label: t.common.lists, href: `/${locale}/listas` },
     {
       icon: PlusIcon,
-      label: 'Nueva',
+      label: t.common.new,
       isButton: true,
       onClick: () => {
         newList.setOpen(true)

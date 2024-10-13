@@ -35,6 +35,7 @@ export interface Common {
     quantity:         string;
     products:         string;
     list:             string;
+    lists:            string;
     title:            string;
     description:      string;
     tags:             string;
@@ -42,6 +43,7 @@ export interface Common {
     updated_at:       string;
     list_name:        string;
     list_description: string;
+    new:              string;
     save:             string;
     saving:           string;
     delete:           string;
@@ -342,6 +344,7 @@ const typeMap: any = {
         { json: "quantity", js: "quantity", typ: "" },
         { json: "products", js: "products", typ: "" },
         { json: "list", js: "list", typ: "" },
+        { json: "lists", js: "lists", typ: "" },
         { json: "title", js: "title", typ: "" },
         { json: "description", js: "description", typ: "" },
         { json: "tags", js: "tags", typ: "" },
@@ -349,6 +352,7 @@ const typeMap: any = {
         { json: "updated_at", js: "updated_at", typ: "" },
         { json: "list_name", js: "list_name", typ: "" },
         { json: "list_description", js: "list_description", typ: "" },
+        { json: "new", js: "new", typ: "" },
         { json: "save", js: "save", typ: "" },
         { json: "saving", js: "saving", typ: "" },
         { json: "delete", js: "delete", typ: "" },
