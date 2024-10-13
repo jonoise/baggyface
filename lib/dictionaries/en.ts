@@ -57,11 +57,19 @@ export interface Common {
     high:             string;
     brand:            string;
     average:          string;
+    cancel:           string;
 }
 
 export interface Components {
     search:           ComponentsSearch;
     spending_section: SpendingSection;
+    delete_product:   DeleteProduct;
+}
+
+export interface DeleteProduct {
+    title:       string;
+    description: string;
+    on_success:  string;
 }
 
 export interface ComponentsSearch {
@@ -118,6 +126,8 @@ export interface Navigation {
 
 export interface Notifiacations {
     was_updated: string;
+    added:       string;
+    deleted:     string;
 }
 
 export interface EnSearch {
@@ -354,10 +364,17 @@ const typeMap: any = {
         { json: "high", js: "high", typ: "" },
         { json: "brand", js: "brand", typ: "" },
         { json: "average", js: "average", typ: "" },
+        { json: "cancel", js: "cancel", typ: "" },
     ], false),
     "Components": o([
         { json: "search", js: "search", typ: r("ComponentsSearch") },
         { json: "spending_section", js: "spending_section", typ: r("SpendingSection") },
+        { json: "delete_product", js: "delete_product", typ: r("DeleteProduct") },
+    ], false),
+    "DeleteProduct": o([
+        { json: "title", js: "title", typ: "" },
+        { json: "description", js: "description", typ: "" },
+        { json: "on_success", js: "on_success", typ: "" },
     ], false),
     "ComponentsSearch": o([
         { json: "input", js: "input", typ: "" },
@@ -405,6 +422,8 @@ const typeMap: any = {
     ], false),
     "Notifiacations": o([
         { json: "was_updated", js: "was_updated", typ: "" },
+        { json: "added", js: "added", typ: "" },
+        { json: "deleted", js: "deleted", typ: "" },
     ], false),
     "EnSearch": o([
         { json: "title", js: "title", typ: "" },

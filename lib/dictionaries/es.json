@@ -30,7 +30,8 @@
     "medium": "Medio",
     "high": "Alto",
     "brand": "Marca",
-    "average": "Promedio"
+    "average": "Promedio",
+    "cancel": "Cancel"
   },
   "components": {
     "search": {
@@ -42,6 +43,11 @@
       "spending_by_category": "Gastos por categoría",
       "total_products": "Productos totales",
       "total_spending": "Monto total"
+    },
+    "delete_product": {
+      "title": "Eliminar producto",
+      "description": "Deseas eliminar",
+      "on_success": "Producto eliminado"
     }
   },
   "navigation": {
