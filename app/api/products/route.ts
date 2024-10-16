@@ -16,6 +16,7 @@ export const GET = async (req: NextRequest) => {
         category: 1,
         brand: 1,
       })
+      .limit(100)
       .lean()
     const p = JSON.parse(JSON.stringify(products))
     return NextResponse.json(p)
