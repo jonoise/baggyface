@@ -7,17 +7,20 @@ export const dynamic = 'force-dynamic'
 export const GET = async (req: NextRequest) => {
   try {
     await dbConnect()
-    const products = await Product.find<ProductI>({
-      price: { $exists: true, $gt: 0 },
-    })
-      .select({
-        name: 1,
-        price: 1,
-        category: 1,
-        brand: 1,
-      })
-      .limit(9000)
-      .lean()
+    const products = await Product.aggregate([
+      { $match: { price: { $exists: true, $gt: 0 } } },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          price: 1,
+          brand: 1,
+          category: 1,
+        },
+      },
+    ])
+
+    console.log(products[0])
 
     return NextResponse.json(products)
   } catch (error) {
