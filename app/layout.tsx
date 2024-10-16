@@ -19,6 +19,13 @@ export default function RootLayout({
     <html lang='en'>
       <head>
         <title>Baggyface</title>
+        {process.env.NODE_ENV === 'production' && (
+          <script
+            async
+            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9780815785619757'
+            crossOrigin='anonymous'
+          ></script>
+        )}
       </head>
       <body className={inter.className + ' bg-background'}>
         {children}
