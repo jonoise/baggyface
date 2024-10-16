@@ -157,7 +157,7 @@ const ListDetailsPage = () => {
               >
                 <AccordionTrigger className='hover:no-underline hover:bg-accent'>
                   <div className='flex flex-col items-start md:items-center md:flex-row md:space-x-2'>
-                    <h4 className='md:text-2xl text-muted-foreground'>
+                    <h4 className='text-lg md:text-2xl text-muted-foreground'>
                       {category?.label}
                     </h4>
                     <p className='text-sm text-primary'>
