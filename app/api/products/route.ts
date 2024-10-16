@@ -2,12 +2,21 @@ import dbConnect from '@/lib/db/connect'
 import { Product, ProductI } from '@/lib/models/product'
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 export const GET = async (req: NextRequest) => {
   try {
     await dbConnect()
     const products = await Product.find<ProductI>({
       price: { $exists: true, $gt: 0 },
-    }).lean()
+    })
+      .select({
+        name: 1,
+        price: 1,
+        category: 1,
+        brand: 1,
+      })
+      .lean()
     const p = JSON.parse(JSON.stringify(products))
     return NextResponse.json(p)
   } catch (error) {

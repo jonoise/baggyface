@@ -81,7 +81,7 @@
       "description": "Distribución en tres rangos de precios."
     },
     "market_share": {
-      "title": "Top 5 maras con más productos",
+      "title": "Top 5 marcas con más productos",
       "description": "Las 5 marcas con más productos en los supermercados de Walmart.",
       "helpText": "Otras marcas que no aparecen en la lista"
     },
