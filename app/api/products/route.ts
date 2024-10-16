@@ -16,10 +16,10 @@ export const GET = async (req: NextRequest) => {
         category: 1,
         brand: 1,
       })
-      .limit(100)
+      .limit(9000)
       .lean()
-    const p = JSON.parse(JSON.stringify(products))
-    return NextResponse.json(p)
+
+    return NextResponse.json(products)
   } catch (error) {
     console.error({ error })
     return NextResponse.json(
