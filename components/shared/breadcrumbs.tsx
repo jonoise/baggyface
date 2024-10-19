@@ -4,13 +4,13 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronRight, Home } from 'lucide-react'
-import { deslugify, stripLocate } from '@/lib/strings'
+import { deslugify } from '@/lib/strings'
 import { useLocale } from './i18n-provider'
 
 const Breadcrumb = () => {
   const pathname = usePathname()
   const pathSegments = pathname.split('/').filter((segment) => segment !== '')
-  const { locale } = useLocale()
+  const locale = useLocale()
 
   return (
     <nav className='hidden lg:block' aria-label='Breadcrumb'>

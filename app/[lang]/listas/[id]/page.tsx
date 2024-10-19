@@ -1,5 +1,5 @@
 'use client'
-import { ProductListI, useCurrentList, useListsStore } from '@/lib/storage'
+import { ListI, useCurrentList, useListsStore } from '@/lib/storage'
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { LoadingState } from './loading-state'
@@ -34,7 +34,7 @@ const ListDetailsPage = () => {
   const t = useTranslation()
   const { updateList } = useListsStore()
   const list = useCurrentList()
-  const [payload, setPayload] = useState<Partial<ProductListI>>({})
+  const [payload, setPayload] = useState<Partial<ListI>>({})
   const [debouncedPayload] = useDebounce(payload, 1100)
   const [isGrouped, setIsGrouped] = useState(true)
 

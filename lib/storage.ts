@@ -1,14 +1,14 @@
 'use client'
 
 import { useParams } from 'next/navigation'
-import { ProductI } from './models/product'
+import { ListProductI } from './models/product'
 
-export interface ProductListI {
+export interface ListI {
   id: string
   title: string
   description: string
   tags: string[]
-  products: ProductI[]
+  products: ListProductI[]
   createdAt: Date
   updatedAt: Date
 }
@@ -17,13 +17,13 @@ import { persist } from 'zustand/middleware'
 
 // Define the store state
 interface ProductListState {
-  lists: ProductListI[]
-  addList: (list: ProductListI) => void
+  lists: ListI[]
+  addList: (list: ListI) => void
   removeList: (id: string) => void
-  updateList: (id: string, updatedList: Partial<ProductListI>) => void
-  addProductToList: (listId: string, product: ProductI) => void
+  updateList: (id: string, updatedList: Partial<ListI>) => void
+  addProductToList: (listId: string, product: ListProductI) => void
   removeProductFromList: (listId: string, productId: string) => void
-  getListById: (id: string) => ProductListI | undefined
+  getListById: (id: string) => ListI | undefined
 }
 
 // Create the store

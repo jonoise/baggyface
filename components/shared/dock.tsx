@@ -9,8 +9,9 @@ import { useLocale, useTranslation } from './i18n-provider'
 export function MobileDock() {
   const t = useTranslation()
   const pathname = usePathname()
-  const { locale } = useLocale()
-  const { newList } = useModalStore((s) => s)
+  const locale = useLocale()
+  const { newListModal } = useModalStore((s) => s)
+
   const navItems = [
     { icon: Home, label: t.navigation.home, href: `/${locale}` },
     { icon: Search, label: t.navigation.search, href: `/${locale}/buscar` },
@@ -20,7 +21,7 @@ export function MobileDock() {
       label: t.common.new,
       isButton: true,
       onClick: () => {
-        newList.setOpen(true)
+        newListModal.setOpen(true)
       },
     },
   ]

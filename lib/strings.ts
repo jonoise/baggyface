@@ -4,4 +4,4 @@ export const deslugify = (slug: string) =>
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(' ')
 
-export const stripLocate = (str: string) => str.split('/').slice(2).join('/')
+export const stripLocale = (str: string) => str.split('/').slice(2).join('/')

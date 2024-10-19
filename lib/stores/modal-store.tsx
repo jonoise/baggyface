@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 interface ModalState {
-  newList: {
+  newListModal: {
     open: boolean
     setOpen: (open: boolean) => void
   }
@@ -9,9 +9,9 @@ interface ModalState {
 
 // Create the store
 export const useModalStore = create<ModalState>()((set) => ({
-  newList: {
+  newListModal: {
     open: false,
     setOpen: (open) =>
-      set((state) => ({ newList: { ...state.newList, open } })),
+      set((state) => ({ newListModal: { ...state.newListModal, open } })),
   },
 }))

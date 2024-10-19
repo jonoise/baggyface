@@ -11,7 +11,7 @@ import { StockbasePromo } from '@/components/shared/stockbase-promo'
 import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
-  const { locale } = useLocale()
+  const locale = useLocale()
   const pathname = usePathname()
   const t = useTranslation()
 

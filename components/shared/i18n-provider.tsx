@@ -6,7 +6,7 @@ import React, { ReactNode, useMemo } from 'react'
 import { createContext } from 'react'
 
 type Dictionary = En
-type LocaleContext = { locale: string }
+type LocaleContext = string
 
 const DictionaryContext = createContext<Dictionary>({} as Dictionary)
 const LocaleContext = createContext<LocaleContext>({} as LocaleContext)
@@ -38,9 +38,7 @@ export const LocaleProvider = ({
   locale: string
 }): JSX.Element => {
   return (
-    <LocaleContext.Provider value={{ locale }}>
-      {children}
-    </LocaleContext.Provider>
+    <LocaleContext.Provider value={locale}>{children}</LocaleContext.Provider>
   )
 }
 

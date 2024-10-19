@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 import { useCurrentList, useListsStore } from '@/lib/storage'
 import { toast } from 'sonner'
 import { useMediaQuery } from '@/lib/hooks/use-media-query'
-import { RiCloseCircleFill, RiCloseLine } from '@remixicon/react'
+import { RiCloseLine } from '@remixicon/react'
 import { useTranslation } from '../shared/i18n-provider'
 
 export const SearchProductsDialog = () => {
@@ -47,7 +47,7 @@ export const SearchProductsDialog = () => {
           addToList={{
             listId: list?.id!,
             onAdd: (product) => {
-              addProductToList(list?.id!, product)
+              addProductToList(list?.id!, { ...product, quantity: 1 })
               toast.success('Producto agregado')
             },
           }}

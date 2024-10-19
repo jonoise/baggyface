@@ -7,16 +7,16 @@ import { useModalStore } from '@/lib/stores/modal-store'
 import React from 'react'
 
 export const ModalsProvider = () => {
-  const { newList } = useModalStore((s) => s)
+  const { newListModal } = useModalStore((s) => s)
   return (
     <>
       <DialogView
-        open={newList.open}
-        setOpen={(value) => newList.setOpen(value as boolean)}
+        open={newListModal.open}
+        setOpen={(value) => newListModal.setOpen(value as boolean)}
       >
         <DialogTitle>Nueva Lista</DialogTitle>
         <div className='mt-4'>
-          <NewListForm onSuccess={() => newList.setOpen(false)} />
+          <NewListForm onSuccess={() => newListModal.setOpen(false)} />
         </div>
       </DialogView>
     </>

@@ -48,3 +48,7 @@ type ProductPropertyI = {
   name: string
   value: string
 }
+
+export type ListProductI = {
+  quantity: number
+} & ProductI

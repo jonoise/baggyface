@@ -3,7 +3,7 @@ import { SettingsForm } from '@/components/forms/settings-form'
 import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 import { PageContainer } from '@/components/shared/page-container'
 import { useCurrencyStore } from '@/lib/stores/currency-store'
-import { stripLocate } from '@/lib/strings'
+import { stripLocale } from '@/lib/strings'
 import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -12,7 +12,7 @@ const ConfigPage = () => {
   const { currency, setCurrency } = useCurrencyStore((s) => s)
   const router = useRouter()
   const pathname = usePathname()
-  const { locale } = useLocale()
+  const locale = useLocale()
 
   const [defaults, setDefaults] = useState({
     currency,
@@ -58,7 +58,7 @@ const ConfigPage = () => {
           type: 'select',
         }}
         handleSubmit={(data: any) => {
-          const path = stripLocate(pathname)
+          const path = stripLocale(pathname)
           router.replace(`/${data.language}/${path}`)
           toast.success(
             `${t.settings_page.language} ${t.notifiacations.was_updated}`

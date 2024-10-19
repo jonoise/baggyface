@@ -32,7 +32,7 @@ export const SettingsForm = ({
   return (
     <form
       onSubmit={form.handleSubmit((data) => handleSubmit(data))}
-      className='rounded-lg border bg-accent text-accent-foreground border-border dark:bg-zinc-900'
+      className='rounded-lg border bg-accent text-accent-foreground border-border'
     >
       <div className='relative flex flex-col space-y-4 p-5 sm:p-5'>
         <h2 className='font-cal text-xl dark:text-white'>{title}</h2>
@@ -70,7 +70,7 @@ export const SettingsForm = ({
         )}
       </div>
 
-      <div className='flex bg-secondary text-secondary-foreground dark:bg-zinc-800 flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5 dark:border-stone-700'>
+      <div className='flex bg-secondary text-secondary-foreground dark:bg-[#091511] flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-border p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-5 dark:border-stone-700'>
         <p className='text-sm '>{helpText}</p>
         <Button>{t.common.save}</Button>
       </div>

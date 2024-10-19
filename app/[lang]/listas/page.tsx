@@ -8,7 +8,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const ListasPage = () => {
-  const { locale } = useLocale()
+  const locale = useLocale()
   const { lists } = useListsStore()
   const t = useTranslation()
   const url = (id: string) => `/${locale}/listas/${id}`

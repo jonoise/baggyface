@@ -77,7 +77,7 @@ export default function SearchProducts({
   }
 }) {
   const { products } = useProducts()
-  const { newList } = useModalStore((s) => s)
+  const { newListModal } = useModalStore((s) => s)
   const t = useTranslation()
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -303,7 +303,10 @@ export default function SearchProducts({
                                   <DropdownMenuItem
                                     key={list.id}
                                     onClick={() => {
-                                      addProductToList(list.id, product)
+                                      addProductToList(list.id, {
+                                        ...product,
+                                        quantity: 1,
+                                      })
                                       toast.success('Producto agregado')
                                     }}
                                   >
@@ -313,7 +316,7 @@ export default function SearchProducts({
 
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
-                                  onClick={() => newList.setOpen(true)}
+                                  onClick={() => newListModal.setOpen(true)}
                                 >
                                   <PlusCircle className='mr-2 h-4 w-4' />
                                   <span>{t.common.new_list}</span>

@@ -11,7 +11,7 @@ import { toast } from 'sonner'
 export const LocaleSettings: FC = (props) => {
   const pathname = usePathname()
   const router = useRouter()
-  const { locale } = useLocale()
+  const locale = useLocale()
   const changeLocale = (locale: string, pathname: string) => {
     const stripPath = pathname.split('/').slice(2).join('/')
     router.replace(`/${locale}/${stripPath}`)
