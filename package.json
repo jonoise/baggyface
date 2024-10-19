@@ -58,6 +58,7 @@
     "input-otp": "^1.2.4",
     "lodash": "^4.17.21",
     "lucide-react": "^0.436.0",
+    "luxon": "^3.5.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.7.0",
     "nanoid": "^5.0.7",
@@ -87,6 +88,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.14",
     "@types/lodash": "^4.17.10",
+    "@types/luxon": "^3.4.2",
     "@types/mdx": "^2.0.13",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
