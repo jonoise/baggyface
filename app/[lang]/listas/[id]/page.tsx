@@ -10,7 +10,7 @@ import { SpendingSection } from './spending-section'
 import { DeleteProduct } from './delete-product'
 import { Button } from '@/components/ui/button'
 import { ListIcon, GridIcon, PlusIcon, ShoppingCartIcon } from 'lucide-react'
-import { ListProductI } from '@/lib/models/product'
+import { ListProductI, Product } from '@/lib/models/product'
 import SearchProducts from '@/components/shared/search-products'
 import {
   Accordion,
@@ -26,6 +26,12 @@ import { TunaIcon } from '@/lib/icons/tuna'
 
 import { reduceProductsPrice } from '@/lib/currency'
 import { ShoppingTab } from './shopping-tab'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { ProductPopoverContent } from '@/components/shared/product-popover-content'
 
 interface GroupedProductsAcc {
   [category: string]: {
@@ -76,26 +82,36 @@ const ListDetailsPage = () => {
     const CategoryIcon =
       CATEGORY_ICONS[category?.value as keyof typeof CATEGORY_ICONS]
     return (
-      <div
-        key={product._id}
-        className='border border-border p-4 rounded-md space-y-2'
-      >
-        <div className='flex items-center justify-between'>
-          <div className='flex items-center space-x-2'>
-            {CategoryIcon && <CategoryIcon className='h-4 w-4' />}
-            <p className='text-xs text-muted-foreground'>{category?.label}</p>
+      <Popover key={product._id}>
+        <div className='border border-border p-4 rounded-md space-y-2'>
+          <PopoverTrigger asChild>
+            <div className='flex items-center justify-between'>
+              <div className='flex items-center space-x-2'>
+                {CategoryIcon && <CategoryIcon className='h-4 w-4' />}
+                <p className='text-xs text-muted-foreground'>
+                  {category?.label}
+                </p>
+              </div>
+              <p className='text-xs text-muted-foreground'>{product.brand}</p>
+            </div>
+          </PopoverTrigger>
+          <PopoverTrigger>
+            <h3 className='text-sm font-semibold truncate '>{product.name}</h3>
+          </PopoverTrigger>
+          <div className='flex items-center justify-between'>
+            <PopoverTrigger>
+              <p className='text-xs'>
+                {t.common.price}: <Price price={product.price} />, cantidad:{' '}
+                {product.quantity ?? 1}
+              </p>
+            </PopoverTrigger>
+            <DeleteProduct product={product} />
           </div>
-          <p className='text-xs text-muted-foreground'>{product.brand}</p>
         </div>
-        <h3 className='text-sm font-semibold truncate '>{product.name}</h3>
-        <div className='flex items-center justify-between'>
-          <p className='text-xs'>
-            {t.common.price}: <Price price={product.price} />, cantidad:{' '}
-            {product.quantity ?? 1}
-          </p>
-          <DeleteProduct product={product} />
-        </div>
-      </div>
+        <PopoverContent>
+          <ProductPopoverContent p={product} />
+        </PopoverContent>
+      </Popover>
     )
   }
 
