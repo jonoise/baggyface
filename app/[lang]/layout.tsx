@@ -11,6 +11,8 @@ import { RecipesNavbar } from './recipes-navbar'
 import { MobileDock } from '@/components/shared/dock'
 import { ModalsProvider } from './modals'
 import { Analytics } from '@vercel/analytics/react'
+import { DateTime } from 'luxon'
+import Link from 'next/link'
 
 const LangLayout = async ({
   children,
@@ -33,9 +35,7 @@ const LangLayout = async ({
 
             <main className='flex-1 flex h-[90vh] md:h-auto flex-col overflow-hidden'>
               <ContentTopbar />
-              <div className='flex-1 overflow-y-auto pb-20 md:pb-0'>
-                {children}
-              </div>
+              <div className='flex-1 overflow-y-auto md:pb-0'>{children}</div>
             </main>
 
             <div className='hidden xl:block'>

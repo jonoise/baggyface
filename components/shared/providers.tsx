@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { SWRConfig } from 'swr'
 
 export function AppProviders({ children }: React.PropsWithChildren) {
   return (
@@ -10,7 +11,11 @@ export function AppProviders({ children }: React.PropsWithChildren) {
       defaultTheme='dark'
       disableTransitionOnChange
     >
-      {children}
+      <SWRConfig
+        value={{ fetcher: async (url) => fetch(url).then((res) => res.json()) }}
+      >
+        {children}
+      </SWRConfig>
     </NextThemesProvider>
   )
 }

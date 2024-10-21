@@ -60,6 +60,8 @@ export interface Common {
     brand:            string;
     average:          string;
     cancel:           string;
+    shopping:         string;
+    spending:         string;
 }
 
 export interface Components {
@@ -117,13 +119,15 @@ export interface ListsDetails {
     no_products:             string;
     title_placeholder:       string;
     description_placeholder: string;
+    shopping_description:    string;
 }
 
 export interface Navigation {
-    home:     string;
-    search:   string;
-    list:     string;
-    settings: string;
+    home:      string;
+    search:    string;
+    list:      string;
+    settings:  string;
+    changelog: string;
 }
 
 export interface Notifiacations {
@@ -369,6 +373,8 @@ const typeMap: any = {
         { json: "brand", js: "brand", typ: "" },
         { json: "average", js: "average", typ: "" },
         { json: "cancel", js: "cancel", typ: "" },
+        { json: "shopping", js: "shopping", typ: "" },
+        { json: "spending", js: "spending", typ: "" },
     ], false),
     "Components": o([
         { json: "search", js: "search", typ: r("ComponentsSearch") },
@@ -417,12 +423,14 @@ const typeMap: any = {
         { json: "no_products", js: "no_products", typ: "" },
         { json: "title_placeholder", js: "title_placeholder", typ: "" },
         { json: "description_placeholder", js: "description_placeholder", typ: "" },
+        { json: "shopping_description", js: "shopping_description", typ: "" },
     ], false),
     "Navigation": o([
         { json: "home", js: "home", typ: "" },
         { json: "search", js: "search", typ: "" },
         { json: "list", js: "list", typ: "" },
         { json: "settings", js: "settings", typ: "" },
+        { json: "changelog", js: "changelog", typ: "" },
     ], false),
     "Notifiacations": o([
         { json: "was_updated", js: "was_updated", typ: "" },

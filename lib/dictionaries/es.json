@@ -33,7 +33,9 @@
     "high": "Alto",
     "brand": "Marca",
     "average": "Promedio",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "shopping": "Comprando",
+    "spending": "Gastos"
   },
   "components": {
     "search": {
@@ -56,7 +58,8 @@
     "home": "Inicio",
     "search": "Buscar",
     "list": "Mis Listas",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "changelog": "Historial de cambios"
   },
   "search": {
     "title": "Buscar Productos",
@@ -71,7 +74,8 @@
   "lists_details": {
     "no_products": "No hay productos en la lista",
     "title_placeholder": "Título",
-    "description_placeholder": "Descripción de la lista"
+    "description_placeholder": "Descripción de la lista",
+    "shopping_description": "Desliza para darles check"
   },
   "home_page": {
     "title": "Bienvenidos a Baggyface",

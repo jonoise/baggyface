@@ -18,7 +18,9 @@ export const Price = ({
   const { currency } = useCurrencyStore()
 
   if (!exchange) {
-    return <Skeleton className={cn(`h-4 w-12`, skeletonClassName)} />
+    return (
+      <Skeleton className={cn(`h-4 w-12 inline-block`, skeletonClassName)} />
+    )
   }
 
   const divisor = currency === 'CRC' ? 1 : Number(exchange)

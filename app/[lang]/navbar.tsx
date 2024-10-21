@@ -3,7 +3,13 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-import { CogIcon, FileTextIcon, HomeIcon, SearchIcon } from 'lucide-react'
+import {
+  CogIcon,
+  FileTextIcon,
+  HomeIcon,
+  ReplaceAllIcon,
+  SearchIcon,
+} from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
@@ -22,11 +28,6 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       href: `/${locale}`,
     },
     {
-      icon: <SearchIcon size={16} strokeWidth={1.5} />,
-      label: t.navigation.search,
-      href: `/${locale}/buscar`,
-    },
-    {
       icon: <FileTextIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.list,
       href: `/${locale}/listas`,
@@ -35,6 +36,11 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       icon: <CogIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.settings,
       href: `/${locale}/configuracion`,
+    },
+    {
+      icon: <ReplaceAllIcon size={16} strokeWidth={1.5} />,
+      label: t.navigation.changelog,
+      href: `/${locale}/changelog`,
     },
   ]
 

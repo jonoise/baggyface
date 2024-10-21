@@ -33,7 +33,9 @@
     "high": "High",
     "brand": "Brand",
     "average": "Average",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "shopping": "Shopping",
+    "spending": "Spending"
   },
   "components": {
     "search": {
@@ -56,7 +58,8 @@
     "home": "Home",
     "search": "Search",
     "list": "My lists",
-    "settings": "Settings"
+    "settings": "Settings",
+    "changelog": "Changelog"
   },
   "search": {
     "title": "Search Products",
@@ -71,7 +74,8 @@
   "lists_details": {
     "no_products": "No products in this list",
     "title_placeholder": "List title",
-    "description_placeholder": "List description"
+    "description_placeholder": "List description",
+    "shopping_description": "Drag to mark products as checked out"
   },
   "home_page": {
     "title": "Welcome to Baggyface",

@@ -14,7 +14,6 @@ export function MobileDock() {
 
   const navItems = [
     { icon: Home, label: t.navigation.home, href: `/${locale}` },
-    { icon: Search, label: t.navigation.search, href: `/${locale}/buscar` },
     { icon: ShoppingBag, label: t.common.lists, href: `/${locale}/listas` },
     {
       icon: PlusIcon,

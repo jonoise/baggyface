@@ -15,71 +15,19 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useDebounce } from 'use-debounce'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
-import { FilePlus2, PlusCircle, PlusIcon } from 'lucide-react'
-import { DotsHorizontalIcon } from '@radix-ui/react-icons'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
-import { useListsStore } from '@/lib/storage'
-import { toast } from 'sonner'
+import { useCurrentList, useListsStore } from '@/lib/storage'
 import { useProducts } from '@/lib/hooks/use-products'
 import { useModalStore } from '@/lib/stores/modal-store'
-import { Price } from './price'
 import { RiCloseCircleFill } from '@remixicon/react'
 import { useTranslation } from './i18n-provider'
 import { CATEGORY_ICONS } from '@/lib/globals'
+import { ProductI } from '@/lib/models/product'
+import { SearchProductItem } from './search-product-item'
 
-interface ProductI {
-  _id: string
-  name: string
-  linkText: string
-  brand: string
-  link: string
-  ean: string
-  category: string
-  price: number
-  images: Array<ProductImageI>
-  properties: Array<ProductPropertyI>
-  createdAt: Date
-  updatedAt: Date
-}
-
-type ProductImageI = {
-  cacheId: string
-  imageId: string
-  imageLabel: string
-  imageTag: string
-  imageUrl: string
-  imageText: string
-  __typename: 'Image'
-}
-
-type ProductPropertyI = {
-  name: string
-  value: string
-}
-
-export default function SearchProducts({
-  addToList,
-}: {
-  addToList?: {
-    listId: string
-    onAdd: (product: ProductI) => void
-  }
-}) {
-  const { products } = useProducts()
-  const { newListModal } = useModalStore((s) => s)
+export default function SearchProducts() {
   const t = useTranslation()
 
+  const { products } = useProducts()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('')
@@ -171,7 +119,7 @@ export default function SearchProducts({
 
   return (
     <div className='flex flex-col h-full relative'>
-      <div className='sticky top-0 bg-background z-10 pb-4 border-b border-border '>
+      <div className='sticky top-0 bg-background z-10 py-4 border-b border-border '>
         <div className={cn('flex flex-col space-y-4 ')}>
           <div className='flex items-center'>
             <Input
@@ -242,102 +190,16 @@ export default function SearchProducts({
       <ScrollArea className='flex-grow'>
         <div className='py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8'>
           {displayedProducts.map((product, index) => {
-            const category = t.ALL_CATEGORIES.find(
-              (c) => c.value === product.category
-            )
-            const CategoryIcon =
-              CATEGORY_ICONS[category?.value as keyof typeof CATEGORY_ICONS]
             return (
               <div
                 key={product._id}
                 ref={
-                  index === displayedProducts.length - 1
+                  index === displayedProducts.length - 5
                     ? lastProductElementRef
                     : null
                 }
-                className='border border-border p-4 rounded-md space-y-2'
               >
-                <div className='flex items-center justify-between'>
-                  <div className='flex items-center space-x-2'>
-                    <p className='text-xs'>
-                      {CategoryIcon && <CategoryIcon className='h-4 w-4' />}
-                    </p>
-                    <p className='text-xs text-muted-foreground'>
-                      {category?.label}
-                    </p>
-                  </div>
-                  {addToList?.onAdd ? (
-                    <Button
-                      onClick={() => addToList?.onAdd(product)}
-                      size='icon'
-                      className='h-5 w-5'
-                      variant='ghost'
-                    >
-                      <PlusIcon className='h-4 w-4' />
-                    </Button>
-                  ) : (
-                    <DropdownMenu modal={false}>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          size='icon'
-                          className='h-6 w-6 rounded-md'
-                          variant='outline'
-                        >
-                          <DotsHorizontalIcon className='h-4 w-4 ' />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className='w-52'>
-                        <DropdownMenuGroup>
-                          {/* <DropdownMenuItem>
-                            <EyeOpenIcon className='mr-2 h-4 w-4' />
-                            <span>Ver Detalles</span>
-                          </DropdownMenuItem> */}
-                          <DropdownMenuSub>
-                            <DropdownMenuSubTrigger>
-                              <FilePlus2 className='mr-2 h-4 w-4' />
-                              <span>{t.common.add_to_list}</span>
-                            </DropdownMenuSubTrigger>
-                            <DropdownMenuPortal>
-                              <DropdownMenuSubContent>
-                                {lists.map((list) => (
-                                  <DropdownMenuItem
-                                    key={list.id}
-                                    onClick={() => {
-                                      addProductToList(list.id, {
-                                        ...product,
-                                        quantity: 1,
-                                      })
-                                      toast.success('Producto agregado')
-                                    }}
-                                  >
-                                    <span>{list.title}</span>
-                                  </DropdownMenuItem>
-                                ))}
-
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem
-                                  onClick={() => newListModal.setOpen(true)}
-                                >
-                                  <PlusCircle className='mr-2 h-4 w-4' />
-                                  <span>{t.common.new_list}</span>
-                                </DropdownMenuItem>
-                              </DropdownMenuSubContent>
-                            </DropdownMenuPortal>
-                          </DropdownMenuSub>
-                        </DropdownMenuGroup>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  )}
-                </div>
-                <h3 className='text-sm font-semibold truncate '>
-                  {product.name}
-                </h3>
-                <p className='text-xs'>
-                  {t.common.price}:{' '}
-                  <span className='underline'>
-                    <Price price={product.price} />
-                  </span>
-                </p>
+                <SearchProductItem product={product} />
               </div>
             )
           })}

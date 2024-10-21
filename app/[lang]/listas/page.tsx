@@ -3,6 +3,7 @@ import { NewListDialog } from '@/components/dialogs/new-list'
 import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
 import { PageContainer } from '@/components/shared/page-container'
 import { Price } from '@/components/shared/price'
+import { reduceProductsPrice } from '@/lib/currency'
 import { useListsStore } from '@/lib/storage'
 import Link from 'next/link'
 import React from 'react'
@@ -79,12 +80,7 @@ const ListasPage = () => {
                 </td>
                 <td className='whitespace-nowrap px-3 py-4 text-sm'>
                   <Link className='w-full' href={url(list.id)}>
-                    <Price
-                      price={list.products.reduce(
-                        (acc, product) => acc + product.price,
-                        0
-                      )}
-                    />
+                    <Price price={reduceProductsPrice(list.products)} />
                   </Link>
                 </td>
                 <td className='whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0'>
