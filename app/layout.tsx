@@ -21,9 +21,9 @@ export default function RootLayout({
         <title>Baggyface</title>
         {process.env.NODE_ENV === 'production' && (
           <script
-            async
-            src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9780815785619757'
-            crossOrigin='anonymous'
+            defer
+            data-domain='baggyface.com'
+            src='https://plausible.io/js/script.js'
           ></script>
         )}
       </head>
