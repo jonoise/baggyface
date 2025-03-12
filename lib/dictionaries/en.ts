@@ -26,6 +26,11 @@ export interface AllCategory {
 }
 
 export interface Common {
+    support:          string;
+    privacy_policy:   string;
+    terms_of_service: string;
+    about_us:         string;
+    contact_us:       string;
     social_media:     string;
     add_to_list:      string;
     new_list:         string;
@@ -339,6 +344,11 @@ const typeMap: any = {
         { json: "label", js: "label", typ: "" },
     ], false),
     "Common": o([
+        { json: "support", js: "support", typ: "" },
+        { json: "privacy_policy", js: "privacy_policy", typ: "" },
+        { json: "terms_of_service", js: "terms_of_service", typ: "" },
+        { json: "about_us", js: "about_us", typ: "" },
+        { json: "contact_us", js: "contact_us", typ: "" },
         { json: "social_media", js: "social_media", typ: "" },
         { json: "add_to_list", js: "add_to_list", typ: "" },
         { json: "new_list", js: "new_list", typ: "" },

@@ -7,6 +7,7 @@ import {
   CogIcon,
   FileTextIcon,
   HomeIcon,
+  LifeBuoyIcon,
   ReplaceAllIcon,
   SearchIcon,
 } from 'lucide-react'
@@ -15,6 +16,7 @@ import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, InstagramLogoIcon } from '@radix-ui/react-icons'
 import { StockbasePromo } from '@/components/shared/stockbase-promo'
 import { useLocale, useTranslation } from '@/components/shared/i18n-provider'
+import { RiRedditLine } from '@remixicon/react'
 
 export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const locale = useLocale()
@@ -38,6 +40,12 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       href: `/${locale}/configuracion`,
     },
     {
+      icon: <LifeBuoyIcon size={16} strokeWidth={1.5} />,
+      label: t.common.support,
+      href: `https://reddit.com/r/baggyface`,
+      target: '_blank',
+    },
+    {
       icon: <ReplaceAllIcon size={16} strokeWidth={1.5} />,
       label: t.navigation.changelog,
       href: `/${locale}/changelog`,
@@ -58,6 +66,7 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
           <Link
             key={index}
             href={item.href}
+            target={item.target || undefined}
             onClick={onLinkClick}
             className={cn(
               'flex text-sm items-center space-x-2 px-2 py-1.5 rounded-md transition ease-in-out duration-300 hover:bg-accent',
@@ -73,10 +82,16 @@ export const Navbar = ({ onLinkClick }: { onLinkClick?: () => void }) => {
           </Link>
         ))}
       </nav>
+
       <div className='px-4 mt-8'>
         <h2 className='text-sm font-semibold mb-2'>{t.common.social_media}</h2>
         <div className='space-y-2'>
           {[
+            {
+              icon: <RiRedditLine size={15} />,
+              label: 'Reddit',
+              href: 'https://reddit.com/r/baggyface',
+            },
             {
               icon: <InstagramLogoIcon />,
               label: 'Instagram',

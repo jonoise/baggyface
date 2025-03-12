@@ -1,5 +1,10 @@
 {
   "common": {
+    "support": "Soporte",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_service": "Términos de Servicio",
+    "about_us": "Nosotros",
+    "contact_us": "Contáctanos",
     "social_media": "Redes Sociales",
     "add_to_list": "Agregar a lista",
     "new_list": "Nueva lista",
